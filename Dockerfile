@@ -1,5 +1,6 @@
 # Stage 1: Build Frontend
 FROM docker.io/library/node:22-alpine AS builder
+ARG VITE_DISCORD_OAUTH_URL
 WORKDIR /app
 COPY frontend/package.json frontend/package-lock.json ./
 RUN npm ci
