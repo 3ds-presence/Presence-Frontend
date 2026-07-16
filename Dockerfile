@@ -2,9 +2,9 @@
 FROM docker.io/library/node:22-alpine AS builder
 ARG VITE_DISCORD_OAUTH_URL
 WORKDIR /app
-COPY frontend/package.json frontend/package-lock.json ./
+COPY ./package.json ./package-lock.json ./
 RUN npm ci
-COPY frontend/ .
+COPY . .
 RUN npm run build
 
 # Stage 2: Nginx runtime
