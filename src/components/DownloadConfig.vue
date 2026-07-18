@@ -17,7 +17,10 @@ const props = defineProps<{
 }>()
 
 function generateConfigContent(uuid: string, aesKey: string): string {
-  return `uuid=${uuid}\naes_key_hex=${aesKey}`
+  const host = window.location.hostname;
+  const port = window.location.port || (window.location.protocol === 'https:' ? '443' : '80');
+  
+  return `UUID=${uuid}\AES_KEY=${aesKey}\nSERVER_HOST=${host}\nSERVER_PORT=${port}`
 }
 
 function downloadConfig() {
@@ -26,7 +29,7 @@ function downloadConfig() {
   const url = URL.createObjectURL(blob)
   const a = document.createElement('a')
   a.href = url
-  a.download = '3ds-presence-config.txt'
+  a.download = 'discord_rpc.conf'
   document.body.appendChild(a)
   a.click()
   document.body.removeChild(a)
