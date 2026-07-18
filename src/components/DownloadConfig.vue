@@ -20,7 +20,7 @@ function generateConfigContent(uuid: string, aesKey: string): string {
   const host = window.location.hostname;
   const port = 80; // Hardcoded port because if the user use a https connection, the port will be 443 and we want to use the http connection on the 3ds
   
-  return `UUID=${uuid}\AES_KEY=${aesKey}\nSERVER_HOST=${host}\nSERVER_PORT=${port}`
+  return `UUID=${uuid}\nAES_KEY=${aesKey}\nSERVER_HOST=${host}\nSERVER_PORT=${port}`
 }
 
 function downloadConfig() {
