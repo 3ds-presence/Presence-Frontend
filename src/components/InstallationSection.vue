@@ -18,7 +18,7 @@
     </ul>
 
     <div style="margin-top: 20px;">
-      <a href="/3ds-presence.3dsx" class="btn btn-download" download>
+      <a href="/dyn/boot.firm" class="btn btn-download" download>
         {{ $t('installation.downloadBinary') }}
       </a>
     </div>
