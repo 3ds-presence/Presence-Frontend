@@ -1,11 +1,11 @@
 <template>
   <div class="card">
-    <h2 class="card-title">Configuration</h2>
+    <h2 class="card-title">{{ $t('downloadConfig.title') }}</h2>
     <p style="margin-bottom: 16px; color: #666;">
-      Téléchargez un fichier contenant vos identifiants pour configurer le client 3DS.
+      {{ $t('downloadConfig.description') }}
     </p>
     <button class="btn btn-download" @click="downloadConfig">
-      Télécharger la configuration
+      {{ $t('downloadConfig.button') }}
     </button>
   </div>
 </template>

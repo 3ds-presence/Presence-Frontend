@@ -1,0 +1,51 @@
+{
+  "app": {
+    "title": "3DS Presence",
+    "processing": "Connexion en cours...",
+    "error": {
+      "invalidResponse": "Réponse du serveur invalide : champs manquants",
+      "connectionError": "Erreur de connexion au serveur : {message}"
+    }
+  },
+  "discordLogin": {
+    "title": "Connexion",
+    "description": "Connectez-vous avec Discord pour obtenir votre configuration",
+    "button": "Login with Discord"
+  },
+  "accountInfo": {
+    "title": "Informations du compte",
+    "uuid": "UUID",
+    "aesKey": "Clé AES",
+    "show": "Afficher",
+    "hide": "Masquer",
+    "settings": "Paramètres du compte",
+    "resetKey": "Réinitialiser la clé AES",
+    "resetting": "Réinitialisation..."
+  },
+  "downloadConfig": {
+    "title": "Configuration",
+    "description": "Téléchargez un fichier contenant vos identifiants pour configurer le client 3DS.",
+    "button": "Télécharger la configuration"
+  },
+  "installation": {
+    "title": "Installation",
+    "prerequisites": "Prérequis",
+    "prerequisitesText": "Pour utiliser 3DS Presence sur votre Nintendo 3DS, vous devez avoir installé un custom firmware (CFW). Suivez un guide comme 3ds.hacks.guide si ce n'est pas encore fait. Vous aurez aussi besoin d'un moyen de transférer des fichiers vers votre carte SD.",
+    "procedure": "Procédure d'installation",
+    "procedureText": "Téléchargez Presence3DS, ainsi que la configuration et placez-la sur votre carte SD.",
+    "steps": "Étapes",
+    "stepsList": [
+      "Téléchargez le fichier boot.firm depuis le lien ci-dessous.",
+      "Copiez le fichier boot.firm à la racine de votre carte SD.",
+      "Téléchargez le fichier de configuration depuis le lien ci-dessous.",
+      "Copiez le fichier de configuration dans le dossier luma/ de votre carte SD.",
+      "Réinsérez la carte SD dans votre 3DS.",
+      "Votre statut Discord se mettra désormais à jour automatiquement pendant que vous jouez !"
+    ],
+    "downloadBinary": "Télécharger Presence3DS"
+  },
+  "languageSwitcher": {
+    "en": "English",
+    "fr": "Français"
+  }
+}

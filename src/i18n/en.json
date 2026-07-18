@@ -1,0 +1,51 @@
+{
+  "app": {
+    "title": "3DS Presence",
+    "processing": "Connecting...",
+    "error": {
+      "invalidResponse": "Invalid server response: missing fields",
+      "connectionError": "Server connection error: {message}"
+    }
+  },
+  "discordLogin": {
+    "title": "Login",
+    "description": "Connect with Discord to get your configuration",
+    "button": "Login with Discord"
+  },
+  "accountInfo": {
+    "title": "Account Information",
+    "uuid": "UUID",
+    "aesKey": "AES Key",
+    "show": "Show",
+    "hide": "Hide",
+    "settings": "Account Settings",
+    "resetKey": "Reset AES Key",
+    "resetting": "Resetting..."
+  },
+  "downloadConfig": {
+    "title": "Configuration",
+    "description": "Download a file containing your credentials to configure the 3DS client.",
+    "button": "Download Configuration"
+  },
+  "installation": {
+    "title": "Installation",
+    "prerequisites": "Prerequisites",
+    "prerequisitesText": "To use 3DS Presence on your Nintendo 3DS, you need a custom firmware (CFW) installed. Follow a guide like 3ds.hacks.guide if you haven't done this yet. You will also need a way to transfer files to your SD card.",
+    "procedure": "Installation Procedure",
+    "procedureText": "Download Presence3DS, along with the configuration file, and place it on your SD card.",
+    "steps": "Steps",
+    "stepsList": [
+      "Download the boot.firm file from the link below.",
+      "Copy the boot.firm file to the root of your SD card.",
+      "Download the configuration file from the link below.",
+      "Copy the configuration file to the luma/ folder on your SD card.",
+      "Reinsert the SD card into your 3DS.",
+      "Your Discord status will now update automatically while you play!"
+    ],
+    "downloadBinary": "Download Presence3DS"
+  },
+  "languageSwitcher": {
+    "en": "English",
+    "fr": "Français"
+  }
+}
