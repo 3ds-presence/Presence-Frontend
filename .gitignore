@@ -24,3 +24,6 @@ dist-ssr
 *.sw?
 
 .env
+
+# Generated files
+public/imgs/available_titles.json

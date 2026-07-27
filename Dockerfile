@@ -21,6 +21,11 @@ WORKDIR /app
 COPY ./package.json ./package-lock.json ./
 RUN npm ci
 COPY . .
+# Generate available_titles.json from the imgs directory structure
+RUN apk add --no-cache jq && \
+    ls public/imgs/ | jq -R -s \
+      'split("\n") | map(select(length > 0 and test("^[0-9a-fA-F]{16}$")))' \
+      > public/imgs/available_titles.json
 RUN npm run build
 
 # Stage 2: Nginx runtime
