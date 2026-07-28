@@ -1,5 +1,5 @@
-# Vue 3 + TypeScript + Vite
+# Presence-3DS Frontend
+This project is part of the Presence-3DS project.
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
-
-Learn more about the recommended Project Setup and IDE Support in the [Vue Docs TypeScript Guide](https://vuejs.org/guide/typescript/overview.html#project-setup).
+This repo contains the frontend of Presence-3DS, along with all the 3DS games logos. 
+It connects to the backend API to handle Discord authentication and configuration download.
