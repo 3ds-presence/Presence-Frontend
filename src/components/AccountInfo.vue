@@ -38,9 +38,27 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         {{ $t('accountInfo.settings') }} {{ showSettings ? '▲' : '▼' }}
       </button>
       <div v-if="showSettings" class="settings-dropdown">
-        <button class="dropdown-btn" @click="resetAesKey" :disabled="resetting">
+        <button class="dropdown-btn dropdown-btn-warning" @click="resetAesKey" :disabled="resetting">
           {{ resetting ? $t('accountInfo.resetting') : $t('accountInfo.resetKey') }}
         </button>
+        <button class="dropdown-btn dropdown-btn-primary" @click="exportData" :disabled="exporting">
+          {{ $t('accountInfo.exportData') }}
+        </button>
+        <button class="dropdown-btn dropdown-btn-danger" @click="confirmDelete">
+          {{ $t('accountInfo.deleteAccount') }}
+        </button>
+      </div>
+    </div>
+
+    <div v-if="showDeleteConfirm" class="confirm-overlay">
+      <div class="confirm-box">
+        <p>{{ $t('accountInfo.deleteConfirm') }}</p>
+        <div class="confirm-buttons">
+          <button class="btn btn-danger" @click="deleteAccount" :disabled="deleting">
+            {{ deleting ? '...' : $t('accountInfo.deleteAccount') }}
+          </button>
+          <button class="btn btn-cancel" @click="showDeleteConfirm = false">Cancel</button>
+        </div>
       </div>
     </div>
   </div>
@@ -61,6 +79,9 @@ const emit = defineEmits<{
 const showAes = ref(false)
 const showSettings = ref(false)
 const resetting = ref(false)
+const exporting = ref(false)
+const deleting = ref(false)
+const showDeleteConfirm = ref(false)
 
 function toggleSettings() {
   showSettings.value = !showSettings.value
@@ -98,6 +119,62 @@ async function resetAesKey() {
     resetting.value = false
   }
 }
+
+async function exportData() {
+  exporting.value = true
+  try {
+    const url = `/api/account/export?uuid=${encodeURIComponent(props.uuid)}&auth_hex=${encodeURIComponent(props.aesKeyHex)}`
+    const response = await fetch(url)
+    if (!response.ok) {
+      const text = await response.text()
+      const result = new URLSearchParams(text)
+      alert(result.get('message') || `Error ${response.status}`)
+      return
+    }
+    const blob = await response.blob()
+    const link = document.createElement('a')
+    link.href = URL.createObjectURL(blob)
+    link.download = '3ds-presence-export.json'
+    link.click()
+    URL.revokeObjectURL(link.href)
+  } catch (e: any) {
+    alert(`Error exporting data: ${e.message || e}`)
+  } finally {
+    exporting.value = false
+  }
+}
+
+function confirmDelete() {
+  showDeleteConfirm.value = true
+}
+
+async function deleteAccount() {
+  deleting.value = true
+  try {
+    const formData = new URLSearchParams()
+    formData.append('uuid', props.uuid)
+    formData.append('auth_hex', props.aesKeyHex)
+
+    const response = await fetch('/api/account/delete', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: formData.toString(),
+    })
+
+    if (response.ok) {
+      showDeleteConfirm.value = false
+      window.location.reload()
+    } else {
+      const text = await response.text()
+      const result = new URLSearchParams(text)
+      alert(result.get('message') || `Error ${response.status}`)
+    }
+  } catch (e: any) {
+    alert(`Error deleting account: ${e.message || e}`)
+  } finally {
+    deleting.value = false
+  }
+}
 </script>
 
 <style scoped>
@@ -123,6 +200,9 @@ async function resetAesKey() {
   background: #f9f9f9;
   border: 1px solid #ddd;
   border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
 .dropdown-btn {
@@ -131,7 +211,6 @@ async function resetAesKey() {
   padding: 10px 16px;
   border: none;
   border-radius: 4px;
-  background: #e74c3c;
   color: #fff;
   font-size: 14px;
   font-weight: 500;
@@ -139,12 +218,93 @@ async function resetAesKey() {
   transition: background 0.2s;
 }
 
-.dropdown-btn:hover:not(:disabled) {
-  background: #c0392b;
-}
-
 .dropdown-btn:disabled {
   opacity: 0.6;
   cursor: not-allowed;
+}
+
+.dropdown-btn-warning {
+  background: #e67e22;
+}
+
+.dropdown-btn-warning:hover:not(:disabled) {
+  background: #d35400;
+}
+
+.dropdown-btn-primary {
+  background: #3498db;
+}
+
+.dropdown-btn-primary:hover:not(:disabled) {
+  background: #2980b9;
+}
+
+.dropdown-btn-danger {
+  background: #e74c3c;
+}
+
+.dropdown-btn-danger:hover:not(:disabled) {
+  background: #c0392b;
+}
+
+.confirm-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.confirm-box {
+  background: #fff;
+  padding: 24px;
+  border-radius: 12px;
+  max-width: 400px;
+  text-align: center;
+}
+
+.confirm-box p {
+  margin-bottom: 20px;
+  line-height: 1.5;
+  color: #333;
+}
+
+.confirm-buttons {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+}
+
+.btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btn-danger {
+  background: #e74c3c;
+  color: #fff;
+}
+
+.btn-danger:hover {
+  background: #c0392b;
+}
+
+.btn-cancel {
+  background: #95a5a6;
+  color: #fff;
+}
+
+.btn-cancel:hover {
+  background: #7f8c8d;
 }
 </style>

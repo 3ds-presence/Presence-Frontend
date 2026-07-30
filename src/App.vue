@@ -25,7 +25,15 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
       {{ error }}
     </div>
 
-    <DiscordLogin v-if="!hasInfo && !processing" />
+    <div v-if="showConsent && tempToken">
+      <ConsentForm
+        :tempToken="tempToken"
+        @consent-success="onConsentSuccess"
+        @consent-error="onConsentError"
+      />
+    </div>
+
+    <DiscordLogin v-else-if="!hasInfo && !processing && !showConsent" />
     <p v-else-if="processing" style="text-align: center; color: #666;">{{ $t('app.processing') }}</p>
 
     <template v-if="accountInfo">
@@ -41,6 +49,7 @@ import { ref, computed, onMounted } from 'vue'
 import { useI18n } from 'vue-i18n'
 import LanguageSwitcher from './components/LanguageSwitcher.vue'
 import DiscordLogin from './components/DiscordLogin.vue'
+import ConsentForm from './components/ConsentForm.vue'
 import AccountInfo from './components/AccountInfo.vue'
 import DownloadConfig from './components/DownloadConfig.vue'
 import InstallationSection from './components/InstallationSection.vue'
@@ -49,8 +58,10 @@ const { t } = useI18n()
 
 const uuid = ref<string | null>(null)
 const aesKeyHex = ref<string | null>(null)
+const tempToken = ref<string | null>(null)
 const error = ref<string | null>(null)
 const processing = ref(false)
+const showConsent = ref(false)
 
 const hasInfo = computed(() => Boolean(uuid.value && aesKeyHex.value))
 const accountInfo = computed(() => {
@@ -66,6 +77,19 @@ const accountInfo = computed(() => {
 
 function onAesKeyUpdated(newKey: string) {
   aesKeyHex.value = newKey
+}
+
+function onConsentSuccess(newUuid: string, newAesKeyHex: string) {
+  uuid.value = newUuid
+  aesKeyHex.value = newAesKeyHex
+  showConsent.value = false
+  tempToken.value = null
+}
+
+function onConsentError(message: string) {
+  error.value = message
+  showConsent.value = false
+  tempToken.value = null
 }
 
 onMounted(async () => {
@@ -92,6 +116,16 @@ onMounted(async () => {
       const result = new URLSearchParams(text)
 
       if (response.ok) {
+        const needsConsent = result.get('needs_consent')
+        const gotToken = result.get('temp_token')
+
+        if (needsConsent === 'true' && gotToken) {
+          tempToken.value = gotToken
+          showConsent.value = true
+          processing.value = false
+          return
+        }
+
         const gotUuid = result.get('uuid')
         const gotKey = result.get('aes_key_hex')
 

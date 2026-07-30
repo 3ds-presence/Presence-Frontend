@@ -12,6 +12,104 @@
     "description": "Connect with Discord to get your configuration",
     "button": "Login with Discord"
   },
+  "consent": {
+    "title": "Welcome to 3DS Presence!",
+    "description": "Before creating your account, please review the data we collect:",
+    "readPrivacy": "Read the Privacy Policy",
+    "checkbox": "I have read and accept the Privacy Policy",
+    "button": "Create my account",
+    "submitting": "Creating account...",
+    "error": {
+      "invalidResponse": "Invalid server response",
+      "expired": "Session expired, please login again."
+    },
+    "data": {
+      "discordId": "Your Discord user ID (to link your profile)",
+      "game": "The game you are currently playing on your 3DS",
+      "mii": "Your Mii avatar (optional)",
+      "ip": "Your IP address (temporarily stored in logs for security, 3 months max)"
+    }
+  },
+  "privacy": {
+    "title": "Privacy Policy",
+    "sections": [
+      {
+        "title": "1. Data Controller",
+        "lines": [
+          "3DS Presence project — Contact: privacy@3ds-presence.top",
+          "This project is open source (AGPL-3.0). If you are using an instance hosted by a third party, please refer to that instance's own privacy policy."
+        ]
+      },
+      {
+        "title": "2. Data Collected",
+        "lines": ["The following personal data is collected when you create an account:"],
+        "list": [
+          "Discord user ID (snowflake) — used to link your Discord profile",
+          "Unique account identifier (UUID) — used to identify your session",
+          "AES-256 encryption key — used to encrypt communication between your 3DS and the server",
+          "Discord OAuth2 tokens (access and refresh tokens) — used to update your Discord Rich Presence",
+          "Game title, publisher, and title ID — the game you are currently playing on your 3DS",
+          "Mii avatar data (optional, if enabled) — used to display your Mii as a small image in your Discord presence",
+          "IP address — temporarily stored in server access logs for security and rate-limiting purposes"
+        ]
+      },
+      {
+        "title": "3. Purpose",
+        "lines": ["The sole purpose of data processing is to provide Discord Rich Presence for Nintendo 3DS: displaying your current game on your Discord profile."]
+      },
+      {
+        "title": "4. Legal Basis",
+        "lines": ["Your explicit consent. By checking the consent box during account creation, you agree to this privacy policy."]
+      },
+      {
+        "title": "5. Data Recipients",
+        "lines": [
+          "Discord Inc. — your data is shared with Discord via their API (OAuth2 and Rich Presence) to display your game status on your Discord profile.",
+          "No other third parties have access to your data."
+        ]
+      },
+      {
+        "title": "6. Data Retention",
+        "list": [
+          "Account data (discord_id, UUID, AES key, tokens): deleted after 3 years of inactivity",
+          "IP logs (server access logs): 3 months maximum",
+          "You can delete your account at any time: instant deletion from the database"
+        ]
+      },
+      {
+        "title": "7. Your Rights",
+        "lines": ["Under the GDPR, you have the following rights:"],
+        "list": [
+          "Right of access — export your data via the dashboard (JSON format)",
+          "Right to rectification — contact us to correct inaccurate data",
+          "Right to erasure — delete your account at any time via the dashboard",
+          "Right to withdraw consent — delete your account to withdraw consent",
+          "Right to data portability — export your data in a machine-readable format (JSON)",
+          "Right to object — you may object to the processing of your data by deleting your account"
+        ]
+      },
+      {
+        "title": "8. Security",
+        "lines": [
+          "AES-256 encryption for client-server communication",
+          "HTTPS for all web connections",
+          "The source code is open (AGPL-3.0) and auditable"
+        ]
+      },
+      {
+        "title": "9. Hosting",
+        "lines": ["This service is self-hosted on a personal server located in France."]
+      },
+      {
+        "title": "10. Changes to This Policy",
+        "lines": ["This policy may be updated occasionally. Users will be notified of significant changes via the website or Discord bot announcement. Continued use of the service after changes constitutes acceptance of the updated policy."]
+      },
+      {
+        "title": "11. Contact",
+        "lines": ["For any questions or requests regarding your personal data: privacy@3ds-presence.top"]
+      }
+    ]
+  },
   "accountInfo": {
     "title": "Account Information",
     "uuid": "UUID",
@@ -20,7 +118,11 @@
     "hide": "Hide",
     "settings": "Account Settings",
     "resetKey": "Reset AES Key",
-    "resetting": "Resetting..."
+    "resetting": "Resetting...",
+    "deleteAccount": "Delete my account",
+    "deleteConfirm": "Are you sure? This action is irreversible. All your data will be permanently deleted.",
+    "deleteSuccess": "Account deleted successfully. Redirecting...",
+    "exportData": "Export my data"
   },
   "downloadConfig": {
     "title": "Configuration",
