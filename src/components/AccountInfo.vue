@@ -123,7 +123,7 @@ async function resetAesKey() {
 async function exportData() {
   exporting.value = true
   try {
-    const url = `/api/account/export?uuid=${encodeURIComponent(props.uuid)}&auth_hex=${encodeURIComponent(props.aesKeyHex)}`
+    const url = `/api/account/export?uuid=${encodeURIComponent(props.uuid)}&aes_key_hex=${encodeURIComponent(props.aesKeyHex)}`
     const response = await fetch(url)
     if (!response.ok) {
       const text = await response.text()
