@@ -49,10 +49,10 @@ interface PrivacySection {
   list?: string[]
 }
 
-const { t } = useI18n()
+const { tm } = useI18n()
 
 const sections = computed<PrivacySection[]>(() => {
-  return (t('privacy.sections') as unknown as PrivacySection[]) ?? []
+  return (tm('privacy.sections') as unknown as PrivacySection[]) ?? []
 })
 </script>
 
