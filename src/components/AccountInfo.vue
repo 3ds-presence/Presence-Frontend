@@ -123,8 +123,15 @@ async function resetAesKey() {
 async function exportData() {
   exporting.value = true
   try {
-    const url = `/api/account/export?uuid=${encodeURIComponent(props.uuid)}&aes_key_hex=${encodeURIComponent(props.aesKeyHex)}`
-    const response = await fetch(url)
+    const formData = new URLSearchParams()
+    formData.append('uuid', props.uuid)
+    formData.append('aes_key_hex', props.aesKeyHex)
+
+    const response = await fetch('/api/account/export', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: formData.toString(),
+    })
     if (!response.ok) {
       const text = await response.text()
       const result = new URLSearchParams(text)
@@ -153,7 +160,7 @@ async function deleteAccount() {
   try {
     const formData = new URLSearchParams()
     formData.append('uuid', props.uuid)
-    formData.append('auth_hex', props.aesKeyHex)
+    formData.append('aes_key_hex', props.aesKeyHex)
 
     const response = await fetch('/api/account/delete', {
       method: 'POST',
