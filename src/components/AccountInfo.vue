@@ -87,17 +87,25 @@ function toggleSettings() {
   showSettings.value = !showSettings.value
 }
 
+function buildAuthForm() {
+  const formData = new URLSearchParams()
+  formData.append('uuid', props.uuid)
+  formData.append('aes_key_hex', props.aesKeyHex)
+  return formData.toString()
+}
+
+function showFormError(response: Response, text: string) {
+  const result = new URLSearchParams(text)
+  alert(result.get('message') || `Error ${response.status}`)
+}
+
 async function resetAesKey() {
   resetting.value = true
   try {
-    const formData = new URLSearchParams()
-    formData.append('uuid', props.uuid)
-    formData.append('aes_key_hex', props.aesKeyHex)
-
     const response = await fetch('/api/reset_aes', {
       method: 'POST',
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: formData.toString(),
+      body: buildAuthForm(),
     })
 
     const text = await response.text()
@@ -110,8 +118,7 @@ async function resetAesKey() {
         showSettings.value = false
       }
     } else {
-      const errMsg = result.get('message') || `Error ${response.status}`
-      alert(`Error : ${errMsg}`)
+      showFormError(response, text)
     }
   } catch (e: any) {
     alert(`Error connecting to server : ${e.message || e}`)
@@ -123,19 +130,14 @@ async function resetAesKey() {
 async function exportData() {
   exporting.value = true
   try {
-    const formData = new URLSearchParams()
-    formData.append('uuid', props.uuid)
-    formData.append('aes_key_hex', props.aesKeyHex)
-
     const response = await fetch('/api/account/export', {
       method: 'POST',
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: formData.toString(),
+      body: buildAuthForm(),
     })
     if (!response.ok) {
       const text = await response.text()
-      const result = new URLSearchParams(text)
-      alert(result.get('message') || `Error ${response.status}`)
+      showFormError(response, text)
       return
     }
     const blob = await response.blob()
@@ -158,14 +160,10 @@ function confirmDelete() {
 async function deleteAccount() {
   deleting.value = true
   try {
-    const formData = new URLSearchParams()
-    formData.append('uuid', props.uuid)
-    formData.append('aes_key_hex', props.aesKeyHex)
-
     const response = await fetch('/api/account/delete', {
       method: 'POST',
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: formData.toString(),
+      body: buildAuthForm(),
     })
 
     if (response.ok) {
@@ -173,8 +171,7 @@ async function deleteAccount() {
       window.location.reload()
     } else {
       const text = await response.text()
-      const result = new URLSearchParams(text)
-      alert(result.get('message') || `Error ${response.status}`)
+      showFormError(response, text)
     }
   } catch (e: any) {
     alert(`Error deleting account: ${e.message || e}`)
