@@ -17,6 +17,7 @@
 # Stage 1: Build Frontend
 FROM docker.io/library/node:22-alpine AS builder
 ARG VITE_DISCORD_OAUTH_URL
+ARG VITE_TURNSTILE_SITEKEY
 WORKDIR /app
 COPY ./package.json ./package-lock.json ./
 RUN npm ci
@@ -26,7 +27,7 @@ RUN apk add --no-cache jq && \
     ls public/imgs/ | jq -R -s \
       'split("\n") | map(select(length > 0 and test("^[0-9a-fA-F]{16}$")))' \
       > public/imgs/available_titles.json
-RUN npm run build
+RUN VITE_DISCORD_OAUTH_URL=${VITE_DISCORD_OAUTH_URL} VITE_TURNSTILE_SITEKEY=${VITE_TURNSTILE_SITEKEY} npm run build
 
 # Stage 2: Nginx runtime
 FROM docker.io/library/nginx:1.27-alpine

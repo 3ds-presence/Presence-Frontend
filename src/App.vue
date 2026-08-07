@@ -95,6 +95,7 @@ function onConsentError(message: string) {
 onMounted(async () => {
   const params = new URLSearchParams(window.location.search)
   const code = params.get('code')
+  const state = params.get('state')
 
   if (code) {
     window.history.replaceState({}, '', window.location.pathname)
@@ -105,6 +106,9 @@ onMounted(async () => {
     try {
       const formData = new URLSearchParams()
       formData.append('code', code)
+      if (state) {
+        formData.append('state', state)
+      }
 
       const response = await fetch('/api/register', {
         method: 'POST',

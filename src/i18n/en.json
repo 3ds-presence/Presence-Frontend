@@ -9,8 +9,10 @@
   },
   "discordLogin": {
     "title": "Login",
-    "description": "Connect with Discord to get your configuration",
-    "button": "Login with Discord"
+    "description": "Sign in with Discord to get your configuration",
+    "button": "Login with Discord",
+    "loading": "Signing in...",
+    "captchaError": "Anti-bot verification failed. Please try again."
   },
   "consent": {
     "title": "Welcome to 3DS Presence!",

@@ -16,3 +16,4 @@
 
 
 export const DISCORD_OAUTH_URL: string = import.meta.env.VITE_DISCORD_OAUTH_URL
+export const TURNSTILE_SITEKEY: string = import.meta.env.VITE_TURNSTILE_SITEKEY
