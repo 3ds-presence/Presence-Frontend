@@ -22,7 +22,9 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     <p style="margin-bottom: 20px; color: #666;">
       {{ $t('discordLogin.description') }}
     </p>
-    <button class="btn btn-discord" :disabled="loading" @click="login">
+    <p v-if="captchaShown" class="captcha-hint">{{ $t('discordLogin.captchaHint') }}</p>
+    <div ref="turnstileContainer" class="turnstile-container"></div>
+    <button type="button" class="btn btn-discord" :disabled="loading" @click="login">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 127.14 96.36" width="24" height="18" fill="white">
         <path d="M107.7,8.07A105.15,105.15,0,0,0,81.47,0a72.06,72.06,0,0,0-3.36,6.83A97.68,97.68,0,0,0,49,6.83,72.37,72.37,0,0,0,45.64,0,105.89,105.89,0,0,0,19.39,8.09C2.79,32.65-1.71,56.6.54,80.21h0A105.73,105.73,0,0,0,32.71,96.36,77.7,77.7,0,0,0,39.6,85.25a68.42,68.42,0,0,1-10.85-5.18c.91-.66,1.8-1.34,2.66-2a75.57,75.57,0,0,0,64.32,0c.87.71,1.76,1.39,2.66,2a68.68,68.68,0,0,1-10.87,5.19,77,77,0,0,0,6.89,11.1A105.25,105.25,0,0,0,126.6,80.22h0C129.24,52.84,122.09,29.11,107.7,8.07ZM42.45,65.69C36.18,65.69,31,60,31,53s5-12.74,11.43-12.74S54,46,53.89,53,48.84,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.25,60,73.25,53s5-12.74,11.44-12.74S96.23,46,96.12,53,91.08,65.69,84.69,65.69Z"/>
       </svg>
@@ -41,6 +43,8 @@ const { t } = useI18n()
 
 const loading = ref(false)
 const error = ref<string | null>(null)
+const captchaShown = ref(false)
+const turnstileContainer = ref<HTMLElement | null>(null)
 
 // Reference to the Turnstile widget state (explicit execution).
 let turnstileWidgetId: string | null = null
@@ -87,23 +91,30 @@ function loadTurnstileScript(): Promise<void> {
 }
 
 function renderTurnstile(): void {
-  if (!window.turnstile || !TURNSTILE_SITEKEY) return
+  if (!window.turnstile || !TURNSTILE_SITEKEY || !turnstileContainer.value) return
 
-  const container = document.createElement('div')
-  container.style.display = 'none'
-  document.body.appendChild(container)
-
-  turnstileWidgetId = window.turnstile.render(container, {
+  turnstileWidgetId = window.turnstile.render(turnstileContainer.value, {
     sitekey: TURNSTILE_SITEKEY,
-    size: 'invisible',
+    execution: 'execute',
+    appearance: 'interaction-only',
     callback: () => {
+      // Captcha solved: hide the hint.
+      captchaShown.value = false
       if (pendingResolve) {
         const token = window.turnstile!.getResponse(turnstileWidgetId!)
         pendingResolve(token)
         pendingResolve = null
       }
     },
+    'challenge-shown': () => {
+      captchaShown.value = true
+    },
+    'interactive-challenge-shown': () => {
+      captchaShown.value = true
+    },
     'expired-callback': () => {
+      // Keep the hint visible: the captcha must be filled again.
+      captchaShown.value = true
       error.value = t('discordLogin.captchaError')
       if (pendingResolve) {
         pendingResolve(undefined)
@@ -132,6 +143,7 @@ async function login() {
     let token: string | undefined
     if (TURNSTILE_SITEKEY && window.turnstile) {
       const widgetId = turnstileWidgetId!
+      captchaShown.value = true
       // Execute the invisible challenge and wait for the token (the callbacks
       // registered at render time resolve this promise).
       token = await new Promise<string | undefined>((resolve) => {
@@ -163,6 +175,7 @@ async function login() {
       const errCode = result.get('error')
       if (errCode === 'turnstile_failed') {
         error.value = t('discordLogin.captchaError')
+        captchaShown.value = true
       } else {
         error.value = result.get('message') || `Error ${response.status}`
       }
@@ -194,3 +207,22 @@ onMounted(() => {
   }
 })
 </script>
+
+<style scoped>
+.captcha-hint {
+  color: #e74c3c;
+  font-weight: 600;
+  margin-bottom: 10px;
+  font-size: 0.95em;
+}
+
+.turnstile-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 12px;
+}
+
+.turnstile-container:empty {
+  display: none;
+}
+</style>
