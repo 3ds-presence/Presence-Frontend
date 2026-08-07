@@ -55,6 +55,7 @@ interface TurnstileApi {
   render: (container: HTMLElement, options: any) => string
   execute: (widgetId?: string) => void
   reset: (widgetId?: string) => void
+  remove: (widgetId?: string) => void
   getResponse: (widgetId?: string) => string | undefined
 }
 
@@ -90,13 +91,11 @@ function loadTurnstileScript(): Promise<void> {
   })
 }
 
-function renderTurnstile(): void {
-  if (!window.turnstile || !TURNSTILE_SITEKEY || !turnstileContainer.value) return
-
-  turnstileWidgetId = window.turnstile.render(turnstileContainer.value, {
+function buildTurnstileOptions(appearance: 'always' | 'interaction-only'): any {
+  return {
     sitekey: TURNSTILE_SITEKEY,
     execution: 'execute',
-    appearance: 'interaction-only',
+    appearance,
     callback: () => {
       // Captcha solved: hide the hint.
       captchaShown.value = false
@@ -121,13 +120,76 @@ function renderTurnstile(): void {
         pendingResolve = null
       }
     },
+    'error-callback': () => {
+      captchaShown.value = true
+      error.value = t('discordLogin.captchaError')
+      if (pendingResolve) {
+        pendingResolve(undefined)
+        pendingResolve = null
+      }
+    },
+  }
+}
+
+function clearWidget(): void {
+  if (turnstileWidgetId != null && window.turnstile) {
+    try {
+      window.turnstile.remove(turnstileWidgetId)
+    } catch {
+      /* ignore */
+    }
+    turnstileWidgetId = null
+  }
+  if (turnstileContainer.value) {
+    turnstileContainer.value.innerHTML = ''
+  }
+}
+
+function renderTurnstile(appearance: 'always' | 'interaction-only' = 'interaction-only'): void {
+  if (!window.turnstile || !TURNSTILE_SITEKEY || !turnstileContainer.value) return
+
+  clearWidget()
+  turnstileWidgetId = window.turnstile.render(
+    turnstileContainer.value,
+    buildTurnstileOptions(appearance)
+  )
+}
+
+function runChallenge(widgetId: string): Promise<string | undefined> {
+  captchaShown.value = true
+  return new Promise<string | undefined>((resolve) => {
+    const timeout = window.setTimeout(() => {
+      pendingResolve = null
+      resolve(undefined)
+    }, 30000)
+
+    pendingResolve = (token) => {
+      window.clearTimeout(timeout)
+      resolve(token)
+    }
+
+    try {
+      window.turnstile!.execute(widgetId)
+    } catch {
+      window.clearTimeout(timeout)
+      pendingResolve = null
+      resolve(undefined)
+    }
   })
 }
 
-/**
- * Run the Turnstile challenge, then ask the backend for a fresh Discord
- * authorization URL (which is only issued after the captcha passes).
- */
+function showTurnstileError(): void {
+  if (!window.turnstile || !TURNSTILE_SITEKEY || !turnstileContainer.value) return
+
+  renderTurnstile('always')
+  const visibleWidgetId = turnstileWidgetId
+  window.setTimeout(() => {
+    if (visibleWidgetId != null) {
+      window.turnstile!.execute(visibleWidgetId)
+    }
+  }, 100)
+}
+
 async function login() {
   if (loading.value) return
   loading.value = true
@@ -137,62 +199,82 @@ async function login() {
     await loadTurnstileScript()
 
     if (turnstileWidgetId == null) {
-      renderTurnstile()
+      renderTurnstile('interaction-only')
     }
 
-    let token: string | undefined
-    if (TURNSTILE_SITEKEY && window.turnstile) {
-      const widgetId = turnstileWidgetId!
-      captchaShown.value = true
-      // Execute the invisible challenge and wait for the token (the callbacks
-      // registered at render time resolve this promise).
-      token = await new Promise<string | undefined>((resolve) => {
-        pendingResolve = resolve
-        try {
-          window.turnstile!.execute(widgetId)
-        } catch {
-          window.turnstile!.reset(widgetId)
-          window.turnstile!.execute(widgetId)
-        }
+    // Without a captcha configured, go straight to the backend.
+    if (!TURNSTILE_SITEKEY || !window.turnstile) {
+      const response = await fetch('/api/oauth/start', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: '',
       })
+      const text = await response.text()
+      const result = new URLSearchParams(text)
+
+      if (!response.ok) {
+        error.value = result.get('message') || `Error ${response.status}`
+        return
+      }
+      const url = result.get('url')
+      if (!url) {
+        error.value = t('app.error.invalidResponse', { message: '' })
+        return
+      }
+      window.location.href = url
+      return
     }
 
-    // Request the Discord authorization URL (backend verifies the captcha token).
-    const formData = new URLSearchParams()
-    if (token) {
+    const widgetId = turnstileWidgetId!
+    // Max two attempts: if the first verification is rejected, re-run the
+    // challenge so Cloudflare shows its error box, then retry.
+    for (let attempt = 0; attempt < 2; attempt++) {
+      const token = await runChallenge(widgetId)
+      if (!token) {
+        if (!error.value) {
+          error.value = t('discordLogin.captchaError')
+        }
+        showTurnstileError()
+        return
+      }
+
+      // Request the Discord authorization URL (backend verifies the captcha token).
+      const formData = new URLSearchParams()
       formData.append('turnstile_token', token)
-    }
 
-    const response = await fetch('/api/oauth/start', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: formData.toString(),
-    })
-    const text = await response.text()
-    const result = new URLSearchParams(text)
+      const response = await fetch('/api/oauth/start', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: formData.toString(),
+      })
+      const text = await response.text()
+      const result = new URLSearchParams(text)
 
-    if (!response.ok) {
+      if (response.ok) {
+        const url = result.get('url')
+        if (!url) {
+          error.value = t('app.error.invalidResponse', { message: '' })
+          return
+        }
+        window.location.href = url
+        return
+      }
+
       const errCode = result.get('error')
       if (errCode === 'turnstile_failed') {
         error.value = t('discordLogin.captchaError')
         captchaShown.value = true
-      } else {
-        error.value = result.get('message') || `Error ${response.status}`
+        // Reset the widget so the next runChallenge re-displays Cloudflare's
+        // challenge box (with its error message) instead of staying hidden.
+        window.turnstile!.reset(widgetId)
+        continue
       }
-      // Reset Turnstile so a retry runs a fresh challenge.
-      if (turnstileWidgetId != null && window.turnstile) {
-        window.turnstile.reset(turnstileWidgetId)
-      }
+
+      error.value = result.get('message') || `Error ${response.status}`
       return
     }
 
-    const url = result.get('url')
-    if (!url) {
-      error.value = t('app.error.invalidResponse', { message: '' })
-      return
-    }
-
-    window.location.href = url
+    showTurnstileError()
   } catch (e: any) {
     error.value = t('app.error.connectionError', { message: e.message || e })
   } finally {
@@ -203,7 +285,7 @@ async function login() {
 onMounted(() => {
   // Pre-load the Turnstile script so the first click is fast.
   if (TURNSTILE_SITEKEY) {
-    loadTurnstileScript().then(renderTurnstile).catch(() => { /* shown on click */ })
+    loadTurnstileScript().then(() => renderTurnstile('interaction-only')).catch(() => { /* shown on click */ })
   }
 })
 </script>
@@ -219,6 +301,9 @@ onMounted(() => {
 .turnstile-container {
   display: flex;
   justify-content: center;
+}
+
+.turnstile-container:not(:empty) {
   margin-bottom: 12px;
 }
 
