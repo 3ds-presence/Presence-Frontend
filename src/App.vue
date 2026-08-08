@@ -19,11 +19,13 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 <template>
   <div>
     <LanguageSwitcher />
-    <h1 style="text-align: center; margin-bottom: 24px;">{{ $t('app.title') }}</h1>
 
     <div v-if="error" class="error-msg">
       {{ error }}
     </div>
+
+    <HeroSection v-if="!hasInfo && !processing && !showConsent" />
+    <p v-else-if="processing" style="text-align: center; color: #666;">{{ $t('app.processing') }}</p>
 
     <div v-if="showConsent && tempToken">
       <ConsentForm
@@ -33,14 +35,13 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
       />
     </div>
 
-    <DiscordLogin v-else-if="!hasInfo && !processing && !showConsent" />
-    <p v-else-if="processing" style="text-align: center; color: #666;">{{ $t('app.processing') }}</p>
-
     <template v-if="accountInfo">
       <AccountInfo :uuid="accountInfo.uuid" :aesKeyHex="accountInfo.aesKeyHex" @aes-key-updated="onAesKeyUpdated" />
       <DownloadConfig :uuid="accountInfo.uuid" :aesKeyHex="accountInfo.aesKeyHex" />
       <InstallationSection />
     </template>
+
+    <SiteFooter />
   </div>
 </template>
 
@@ -48,8 +49,9 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 import { ref, computed, onMounted } from 'vue'
 import { useI18n } from 'vue-i18n'
 import LanguageSwitcher from './components/LanguageSwitcher.vue'
-import DiscordLogin from './components/DiscordLogin.vue'
+import HeroSection from './components/HeroSection.vue'
 import ConsentForm from './components/ConsentForm.vue'
+import SiteFooter from './components/SiteFooter.vue'
 import AccountInfo from './components/AccountInfo.vue'
 import DownloadConfig from './components/DownloadConfig.vue'
 import InstallationSection from './components/InstallationSection.vue'

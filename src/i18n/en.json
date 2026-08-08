@@ -7,6 +7,25 @@
       "connectionError": "Server connection error: {message}"
     }
   },
+  "hero": {
+    "description": "Display the game you are playing on your Nintendo 3DS directly on your Discord profile.",
+    "discordButton": "Discord",
+    "githubButton": "GitHub"
+  },
+  "features": {
+    "title": "Features",
+    "items": [
+      "Display your current 3DS game on your Discord profile",
+      "Your Mii avatar shown in your presence (optional)",
+      "Compatible with all 3DS games",
+      "Works with a custom firmware (CFW): boot.firm + config file on your SD card"
+    ]
+  },
+  "footer": {
+    "copyright": "© 2026 3DS Presence",
+    "license": "Licensed under AGPL-3.0",
+    "privacy": "Privacy Policy"
+  },
   "discordLogin": {
     "title": "Login",
     "description": "Sign in with Discord to get your configuration",

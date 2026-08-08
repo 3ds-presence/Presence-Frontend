@@ -152,3 +152,80 @@ ul {
 p {
   margin: 8px 0;
 }
+
+/* Hero section */
+.hero-section {
+  text-align: center;
+}
+
+.hero-title {
+  margin-bottom: 12px;
+}
+
+.hero-description {
+  color: #666;
+  margin-bottom: 24px;
+  font-size: 17px;
+}
+
+.hero-links {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.hero-login {
+  display: flex;
+  justify-content: center;
+}
+
+.btn-github {
+  background: #333;
+}
+
+.btn-github:hover {
+  background: #222;
+}
+
+/* Features list */
+.features-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.features-list li {
+  padding: 8px 0;
+  border-bottom: 1px solid #eee;
+  color: #555;
+  line-height: 1.8;
+}
+
+.features-list li:last-child {
+  border-bottom: none;
+}
+
+/* Site footer */
+.site-footer {
+  text-align: center;
+  padding: 20px 0;
+  margin-top: 20px;
+  border-top: 1px solid #ddd;
+  color: #666;
+  font-size: 14px;
+}
+
+.site-footer a {
+  color: #5865f2;
+  text-decoration: underline;
+}
+
+.site-footer a:hover {
+  color: #4752c4;
+}
+
+.footer-separator {
+  margin: 0 8px;
+  color: #ccc;
+}
