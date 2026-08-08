@@ -101,15 +101,22 @@
         ]
       },
       {
-        "title": "9. Hébergement",
+        "title": "9. Protection anti-bot",
+        "lines": [
+          "Cloudflare Turnstile est utilisé comme protection anti-bot lors de la connexion.",
+          "https://www.cloudflare.com/privacypolicy/"
+        ]
+      },
+      {
+        "title": "10. Hébergement",
         "lines": ["Ce service est auto-hébergé sur un serveur personnel situé en France."]
       },
       {
-        "title": "10. Modifications de cette politique",
+        "title": "11. Modifications de cette politique",
         "lines": ["Cette politique peut être mise à jour occasionnellement. Les utilisateurs seront informés des changements importants via le site web ou une annonce Discord. L'utilisation continue du service après les modifications constitue une acceptation de la politique mise à jour."]
       },
       {
-        "title": "11. Contact",
+        "title": "12. Contact",
         "lines": ["Pour toute question ou demande concernant vos données personnelles : privacy@3ds-presence.top"]
       }
     ]
