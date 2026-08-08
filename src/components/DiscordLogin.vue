@@ -22,7 +22,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     <p style="margin-bottom: 20px; color: #666;">
       {{ $t('discordLogin.description') }}
     </p>
-    <p v-if="captchaShown" class="captcha-hint">{{ $t('discordLogin.captchaHint') }}</p>
     <div ref="turnstileContainer" class="turnstile-container"></div>
     <button type="button" class="btn btn-discord" :disabled="loading" @click="login">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 127.14 96.36" width="24" height="18" fill="white">
@@ -43,7 +42,6 @@ const { t } = useI18n()
 
 const loading = ref(false)
 const error = ref<string | null>(null)
-const captchaShown = ref(false)
 const turnstileContainer = ref<HTMLElement | null>(null)
 
 // Reference to the Turnstile widget state (explicit execution).
@@ -97,23 +95,13 @@ function buildTurnstileOptions(appearance: 'always' | 'interaction-only'): any {
     execution: 'execute',
     appearance,
     callback: () => {
-      // Captcha solved: hide the hint.
-      captchaShown.value = false
       if (pendingResolve) {
         const token = window.turnstile!.getResponse(turnstileWidgetId!)
         pendingResolve(token)
         pendingResolve = null
       }
     },
-    'challenge-shown': () => {
-      captchaShown.value = true
-    },
-    'interactive-challenge-shown': () => {
-      captchaShown.value = true
-    },
     'expired-callback': () => {
-      // Keep the hint visible: the captcha must be filled again.
-      captchaShown.value = true
       error.value = t('discordLogin.captchaError')
       if (pendingResolve) {
         pendingResolve(undefined)
@@ -121,7 +109,6 @@ function buildTurnstileOptions(appearance: 'always' | 'interaction-only'): any {
       }
     },
     'error-callback': () => {
-      captchaShown.value = true
       error.value = t('discordLogin.captchaError')
       if (pendingResolve) {
         pendingResolve(undefined)
@@ -156,7 +143,6 @@ function renderTurnstile(appearance: 'always' | 'interaction-only' = 'interactio
 }
 
 function runChallenge(widgetId: string): Promise<string | undefined> {
-  captchaShown.value = true
   return new Promise<string | undefined>((resolve) => {
     const timeout = window.setTimeout(() => {
       pendingResolve = null
@@ -263,7 +249,6 @@ async function login() {
       const errCode = result.get('error')
       if (errCode === 'turnstile_failed') {
         error.value = t('discordLogin.captchaError')
-        captchaShown.value = true
         // Reset the widget so the next runChallenge re-displays Cloudflare's
         // challenge box (with its error message) instead of staying hidden.
         window.turnstile!.reset(widgetId)
@@ -291,13 +276,6 @@ onMounted(() => {
 </script>
 
 <style scoped>
-.captcha-hint {
-  color: #e74c3c;
-  font-weight: 600;
-  margin-bottom: 10px;
-  font-size: 0.95em;
-}
-
 .turnstile-container {
   display: flex;
   justify-content: center;

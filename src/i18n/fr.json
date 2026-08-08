@@ -12,8 +12,7 @@
     "description": "Connectez-vous avec Discord pour obtenir votre configuration",
     "button": "Login with Discord",
     "loading": "Connexion en cours...",
-    "captchaError": "Vérification anti-robot échouée. Réessayez.",
-    "captchaHint": "Veuillez remplir le captcha pour vous connecter"
+    "captchaError": "Vérification anti-robot échouée. Réessayez."
   },
   "consent": {
     "title": "Bienvenue sur 3DS Presence !",
