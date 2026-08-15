@@ -169,8 +169,8 @@
     "stepsList": [
       "Téléchargez le fichier boot.firm depuis le lien ci-dessous.",
       "Copiez le fichier boot.firm à la racine de votre carte SD.",
-      "Téléchargez le fichier de configuration depuis le lien ci-dessous.",
-      "Copiez le fichier de configuration dans le dossier luma/ de votre carte SD.",
+      "Téléchargez le fichier de configuration depuis le lien ci-dessus.",
+      "Copiez le fichier de configuration dans le dossier presence3ds/ de votre carte SD.",
       "Réinsérez la carte SD dans votre 3DS.",
       "Votre statut Discord se mettra désormais à jour automatiquement pendant que vous jouez !"
     ],
