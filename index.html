@@ -17,15 +17,131 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 -->
 
 <!doctype html>
-<html lang="fr">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>3DS Presence</title>
+
+    <!-- Primary Meta Tags -->
+    <title>3DS Presence: Discord RPC for Nintendo 3DS</title>
+    <meta
+      name="description"
+      content="Discord Rich Presence for Nintendo 3DS: Show the game you are playing on your Nintendo 3DS directly in your Discord status. 3DS Presence displays your activity in real time: game title, play time and more. Free and open source."
+    />
+    <meta name="author" content="3DS Presence - LeonLeBreton" />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <meta name="theme-color" content="#5865F2" />
+    <meta name="color-scheme" content="dark" />
+    <link rel="canonical" href="https://3ds-presence.top/" />
+
+    <!-- Icons -->
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="3DS Presence" />
+    <meta property="og:url" content="https://3ds-presence.top/" />
+    <meta property="og:title" content="3DS Presence: Discord Rich Presence for Nintendo 3DS" />
+    <meta
+      property="og:description"
+      content="Show the game you are playing on your Nintendo 3DS directly in your Discord status. Free and open source."
+    />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:image" content="https://3ds-presence.top/og-image.png" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:alt" content="3DS Presence logo" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://3ds-presence.top/" />
+    <meta name="twitter:title" content="3DS Presence: Discord Rich Presence for Nintendo 3DS" />
+    <meta
+      name="twitter:description"
+      content="Show the game you are playing on your Nintendo 3DS directly in your Discord status. Free and open source."
+    />
+    <meta name="twitter:image" content="https://3ds-presence.top/og-image.png" />
+    <meta name="twitter:image:alt" content="3DS Presence logo" />
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "3DS Presence",
+      "alternateName": "3DS Presence: Discord Rich Presence for Nintendo 3DS",
+      "url": "https://3ds-presence.top/",
+      "description": "Show the game you are playing on your Nintendo 3DS directly in your Discord status.",
+      "inLanguage": "en",
+      "publisher": {
+        "@type": "Organization",
+        "name": "3DS Presence",
+        "url": "https://3ds-presence.top/",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://3ds-presence.top/logo.png",
+          "width": 512,
+          "height": 512
+        }
+      }
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "3DS Presence",
+      "applicationCategory": "UtilitiesApplication",
+      "operatingSystem": "Nintendo 3DS",
+      "description": "Discord Rich Presence for Nintendo 3DS: show the game you are playing on your 3DS in your Discord status.",
+      "url": "https://3ds-presence.top/",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "EUR"
+      },
+      "license": "https://www.gnu.org/licenses/agpl-3.0.html",
+      "author": {
+        "@type": "Organization",
+        "name": "3DS Presence",
+        "url": "https://github.com/3ds-presence"
+      },
+      "screenshot": [
+        {
+          "@type": "ImageObject",
+          "url": "https://3ds-presence.top/screenshots/discord-rich-presence-3ds-basic.png",
+          "caption": "Basic Discord Rich Presence example on Nintendo 3DS"
+        },
+        {
+          "@type": "ImageObject",
+          "url": "https://3ds-presence.top/screenshots/discord-rich-presence-3ds-advanced.png",
+          "caption": "Advanced Discord Rich Presence example on Nintendo 3DS"
+        }
+      ]
+    }
+    </script>
   </head>
   <body>
     <div id="app"></div>
+    <noscript>
+      <div style="max-width: 40rem; margin: 3rem auto; padding: 0 1rem; font-family: system-ui, sans-serif; line-height: 1.6; color: #e0e0e0; background: #1e1f22;">
+        <h1>3DS Presence — Discord Rich Presence for Nintendo 3DS</h1>
+        <p>
+          Show the game you are playing on your Nintendo 3DS directly in your Discord status.
+          3DS Presence is free and open source.
+        </p>
+        <p>JavaScript is required to use the application. Please enable JavaScript in your browser.</p>
+        <p>
+          Find the project on GitHub:
+          <a href="https://github.com/3ds-presence" style="color: #5865F2;">github.com/3ds-presence</a>
+        </p>
+      </div>
+    </noscript>
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>
