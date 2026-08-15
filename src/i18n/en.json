@@ -157,6 +157,11 @@
     "description": "Download a file containing your credentials to configure the 3DS client.",
     "button": "Download Configuration"
   },
+  "downloadButton": {
+    "title": "Download",
+    "subtitle": "Download the latest version of Presence3DS",
+    "version": "Actual version: {version}"
+  },
   "installation": {
     "title": "Installation",
     "prerequisites": "Prerequisites",

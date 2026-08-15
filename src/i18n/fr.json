@@ -159,6 +159,11 @@
     "description": "Téléchargez un fichier contenant vos identifiants pour configurer le client 3DS.",
     "button": "Télécharger la configuration"
   },
+  "downloadButton": {
+    "title": "Télécharger",
+    "subtitle": "Télécharger la dernière version de Presence3DS",
+    "version": "Version actuelle : {version}"
+  },
   "installation": {
     "title": "Installation",
     "prerequisites": "Prérequis",

@@ -15,19 +15,25 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 
-import { defineConfig } from 'vite'
+import { defineConfig, loadEnv } from 'vite'
 import vue from '@vitejs/plugin-vue'
+import { mockBackend } from './mock-backend.js'
 
-export default defineConfig({
-  plugins: [vue()],
-  server: {
-    port: 5556,
-    proxy: {
-      '/api': {
-        target: 'http://localhost:5555',
-        changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api/, ''),
-      },
+export default defineConfig(({ mode }) => {
+  // Use default Turnstile site key if none is provided.
+  // This allows the frontend to run standalone without a real Turnstile site key.
+  const env = loadEnv(mode, process.cwd(), '')
+  const siteKey = env.VITE_TURNSTILE_SITEKEY || process.env.VITE_TURNSTILE_SITEKEY
+  const define: Record<string, string> = {}
+  if (!siteKey) {
+    define['import.meta.env.VITE_TURNSTILE_SITEKEY'] = JSON.stringify('1x00000000000000000000AA')
+  }
+
+  return {
+    plugins: [vue(), mockBackend()],
+    server: {
+      port: 5556,
     },
-  },
+    define,
+  }
 })

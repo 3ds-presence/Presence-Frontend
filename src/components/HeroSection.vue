@@ -53,6 +53,12 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
       </div>
     </div>
 
+    <div class="card download-card">
+      <h2 class="download-title">{{ $t('downloadButton.title') }}</h2>
+      <p class="download-subtitle">{{ $t('downloadButton.subtitle') }}</p>
+      <DownloadButton />
+    </div>
+
     <div class="card">
       <h2 class="card-title">{{ $t('features.title') }}</h2>
       <ul class="features-list">
@@ -65,8 +71,32 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n'
 import DiscordLogin from './DiscordLogin.vue'
+import DownloadButton from './DownloadButton.vue'
 
 const { tm } = useI18n()
 
 const featureItems = (tm('features.items') as unknown as string[]) ?? []
 </script>
+
+<style scoped>
+.download-card {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.download-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #222;
+  margin: 0;
+}
+
+.download-subtitle {
+  font-size: 14px;
+  color: #666;
+  margin: 0 0 12px 0;
+}
+</style>

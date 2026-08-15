@@ -36,12 +36,11 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     </ul>
 
     <div style="margin-top: 20px;">
-      <a href="/dyn/boot.firm" class="btn btn-download" download>
-        {{ $t('installation.downloadBinary') }}
-      </a>
+      <DownloadButton />
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
+import DownloadButton from './DownloadButton.vue'
 </script>
