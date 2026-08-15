@@ -69,13 +69,14 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 </template>
 
 <script setup lang="ts">
+import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 import DiscordLogin from './DiscordLogin.vue'
 import DownloadButton from './DownloadButton.vue'
 
 const { tm } = useI18n()
 
-const featureItems = (tm('features.items') as unknown as string[]) ?? []
+const featureItems = computed(() => (tm('features.items') as unknown as string[]) ?? [])
 </script>
 
 <style scoped>
