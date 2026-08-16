@@ -1,0 +1,40 @@
+# 3DS Presence
+
+> Free and open-source Discord Rich Presence client for Nintendo 3DS that shows your current game in Discord status.
+
+3DS Presence replaces the Luma `boot.firm` on your SD card to intercept the currently running game and send it to a backend server, which generates a Discord Rich Presence activity and pushes it to your Discord profile in real time.
+
+## Features
+
+- Displays current game (name, publisher, logo) in Discord status
+- Mii avatar support as small image
+- Custom game activities with detailed info (e.g., Hatsune Miku Project Mirai DX shows song, difficulty)
+- Real-time updates as you switch games
+- Free and open source (AGPL-3.0)
+- Self-hostable backend
+
+## Requirements
+
+- Nintendo 3DS / 2DS (New 3DS, Old 3DS, 2DS, New 2DS XL)
+- Custom firmware installed
+- Discord account
+- Internet connection on the 3DS
+
+## Installation
+
+1. Download the latest `boot.firm` from the GitHub releases
+2. Replace the existing `boot.firm` on your SD card root
+3. Configure via the web interface at [3DS Presence Dashboard](https://3ds-presence.top/)
+4. Link your Discord account and start playing
+
+## Links
+
+- [3DS Presence on GitHub](https://github.com/3ds-presence)
+- [Installation guide](https://github.com/3ds-presence/3ds-presence.github.io)
+- [Discord server](https://discord.gg/3ds-presence)
+
+## Optional
+
+- [Backend API documentation](https://github.com/3ds-presence/Presence-Backend)
+- [Activity Generator (Lua scripts)](https://github.com/3ds-presence/Activity-Generator)
+- [RPC AddOn for 3DS](https://github.com/3ds-presence/RPC-AddOn)
