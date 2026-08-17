@@ -21,12 +21,10 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     <h2 class="card-title">{{ $t('consent.title') }}</h2>
     <p class="consent-description">{{ $t('consent.description') }}</p>
 
-    <ul class="consent-data-list">
-      <li v-for="(item, index) in dataItems" :key="index">{{ item }}</li>
-    </ul>
-
     <p class="consent-privacy-link">
       <a href="/privacy" @click.prevent="showPrivacy = true">{{ $t('consent.readPrivacy') }}</a>
+      <span class="consent-link-separator">·</span>
+      <a href="/terms" @click.prevent="showTerms = true">{{ $t('consent.readTerms') }}</a>
     </p>
 
     <div class="consent-checkbox">
@@ -41,6 +39,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     <p v-if="error" class="error-msg">{{ error }}</p>
 
     <PrivacyPolicyModal v-if="showPrivacy" @close="showPrivacy = false" />
+    <TermsOfServiceModal v-if="showTerms" @close="showTerms = false" />
   </div>
 </template>
 
@@ -48,6 +47,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 import { ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import PrivacyPolicyModal from './PrivacyPolicyModal.vue'
+import TermsOfServiceModal from './TermsOfServiceModal.vue'
 
 const { t } = useI18n()
 
@@ -64,13 +64,7 @@ const accepted = ref(false)
 const submitting = ref(false)
 const error = ref<string | null>(null)
 const showPrivacy = ref(false)
-
-const dataItems = [
-  t('consent.data.discordId'),
-  t('consent.data.game'),
-  t('consent.data.mii'),
-  t('consent.data.ip'),
-]
+const showTerms = ref(false)
 
 async function confirmConsent() {
   submitting.value = true
@@ -120,13 +114,6 @@ async function confirmConsent() {
   color: #444;
 }
 
-.consent-data-list {
-  margin-bottom: 16px;
-  padding-left: 20px;
-  color: #555;
-  line-height: 1.8;
-}
-
 .consent-privacy-link {
   margin-bottom: 16px;
 }
@@ -134,6 +121,11 @@ async function confirmConsent() {
 .consent-privacy-link a {
   color: #5865f2;
   text-decoration: underline;
+}
+
+.consent-link-separator {
+  margin: 0 8px;
+  color: #999;
 }
 
 .consent-checkbox {

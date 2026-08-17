@@ -17,15 +17,15 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 -->
 
 <template>
-  <main class="privacy-page">
+  <main class="terms-page">
     <LanguageSwitcher />
 
-    <a href="/" class="privacy-back">{{ $t('common.backToHome') }}</a>
+    <a href="/" class="terms-back">{{ $t('common.backToHome') }}</a>
 
-    <article class="privacy-article">
-      <h1 class="privacy-title">{{ $t('privacy.title') }}</h1>
-      <p class="privacy-updated">{{ $t('privacy.lastUpdated') }}</p>
-      <PrivacyPolicyContent />
+    <article class="terms-article">
+      <h1 class="terms-title">{{ $t('terms.title') }}</h1>
+      <p class="terms-updated">{{ $t('terms.lastUpdated') }}</p>
+      <TermsOfServiceContent />
     </article>
   </main>
 </template>
@@ -34,12 +34,12 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 import { onMounted, onUnmounted, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 import LanguageSwitcher from './LanguageSwitcher.vue'
-import PrivacyPolicyContent from './PrivacyPolicyContent.vue'
+import TermsOfServiceContent from './TermsOfServiceContent.vue'
 
 const { t, locale } = useI18n()
 
 function updateTitle() {
-  document.title = `${t('privacy.title')} — 3DS Presence`
+  document.title = `${t('terms.title')} — 3DS Presence`
 }
 
 onMounted(() => {
@@ -70,13 +70,13 @@ watch(locale, () => {
 </script>
 
 <style scoped>
-.privacy-page {
+.terms-page {
   max-width: 1200px;
   margin: 40px auto;
   padding: 0 20px;
 }
 
-.privacy-back {
+.terms-back {
   display: inline-block;
   margin-bottom: 20px;
   color: #5865f2;
@@ -84,19 +84,19 @@ watch(locale, () => {
   font-size: 14px;
 }
 
-.privacy-back:hover {
+.terms-back:hover {
   color: #4752c4;
   text-decoration: underline;
 }
 
-.privacy-article {
+.terms-article {
   background: #fff;
   border: 1px solid #ddd;
   border-radius: 12px;
   padding: 32px;
 }
 
-.privacy-title {
+.terms-title {
   font-size: 24px;
   font-weight: 600;
   margin-bottom: 4px;
@@ -104,7 +104,7 @@ watch(locale, () => {
   border-bottom: 1px solid #eee;
 }
 
-.privacy-updated {
+.terms-updated {
   font-size: 13px;
   color: #888;
   margin-bottom: 16px;

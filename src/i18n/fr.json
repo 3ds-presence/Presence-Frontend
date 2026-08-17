@@ -27,7 +27,8 @@
   "footer": {
     "copyright": "© 2026 3DS Presence",
     "license": "Sous licence AGPL-3.0",
-    "privacy": "Politique de Confidentialité"
+    "privacy": "Politique de Confidentialité",
+    "terms": "Conditions d'Utilisation"
   },
   "discordLogin": {
     "title": "Connexion",
@@ -38,24 +39,20 @@
   },
   "consent": {
     "title": "Bienvenue sur 3DS Presence !",
-    "description": "Avant de créer votre compte, veuillez consulter les données que nous collectons :",
+    "description": "Avant de créer votre compte, veuillez consulter les documents suivants :",
     "readPrivacy": "Lire la Politique de Confidentialité",
-    "checkbox": "J'ai lu et j'accepte la Politique de Confidentialité",
+    "readTerms": "Lire les Conditions d'Utilisation",
+    "checkbox": "J'ai lu et j'accepte la Politique de Confidentialité et les Conditions d'Utilisation",
     "button": "Créer mon compte",
     "submitting": "Création du compte...",
     "error": {
       "invalidResponse": "Réponse du serveur invalide",
       "expired": "Session expirée, veuillez vous reconnecter."
-    },
-    "data": {
-      "discordId": "Votre identifiant Discord (pour lier votre profil)",
-      "game": "Le jeu auquel vous jouez sur votre 3DS",
-      "mii": "Votre avatar Mii (optionnel)",
-      "ip": "Votre adresse IP (conservée temporairement dans les logs, 3 mois max)"
     }
   },
   "privacy": {
     "title": "Politique de Confidentialité",
+    "lastUpdated": "Dernière mise à jour : 8 août 2026",
     "sections": [
       {
         "title": "1. Responsable du traitement",
@@ -140,6 +137,127 @@
       {
         "title": "12. Contact",
         "lines": ["Pour toute question ou demande concernant vos données personnelles : privacy@3ds-presence.top"]
+      }
+    ]
+  },
+  "terms": {
+    "title": "Conditions d'Utilisation",
+    "lastUpdated": "Dernière mise à jour : 17 août 2026",
+    "sections": [
+      {
+        "title": "1. Acceptation des conditions",
+        "lines": [
+          "En accédant au site, en créant un compte ou en utilisant le service 3DS Presence, vous acceptez d'être lié par les présentes Conditions d'Utilisation. Si vous n'acceptez pas ces conditions, vous ne devez pas utiliser le service.",
+          "La création d'un compte via Discord implique également l'acceptation de la Politique de Confidentialité."
+        ]
+      },
+      {
+        "title": "2. Description du service",
+        "lines": [
+          "3DS Presence permet aux utilisateurs d'afficher le jeu auquel ils jouent sur leur Nintendo 3DS directement sur leur profil Discord (Discord Rich Presence).",
+          "Le service comprend :"
+        ],
+        "list": [
+          "Un site web permettant la connexion via Discord et la gestion du compte",
+          "Un serveur backend (API) traitant les activités",
+          "Un client pour Nintendo 3DS (boot.firm) installé sur la console",
+          "Un générateur d'activités et, optionnellement, un serveur de génération d'avatars Mii"
+        ]
+      },
+      {
+        "title": "3. Éligibilité",
+        "lines": ["Pour utiliser le service, vous devez :"],
+        "list": [
+          "Avoir au moins 13 ans (âge minimum requis par Discord pour créer un compte)",
+          "Si vous résidez dans l'Union Européenne, avoir au moins 15 ans ou disposer de l'autorisation de votre représentant légal (conformément au RGPD)",
+          "Disposer d'un compte Discord en règle",
+          "Disposer d'une Nintendo 3DS avec un custom firmware (CFW) installé, ainsi que d'un moyen de transférer des fichiers vers la carte SD de la console"
+        ],
+        "warning": "⚠️ Avertissement — Custom Firmware : L'installation d'un custom firmware (CFW) sur votre Nintendo 3DS peut violer les conditions d'utilisation de Nintendo et annuler votre garantie. Vous êtes seul responsable de l'installation du CFW et des conséquences qui en découlent. 3DS Presence n'est pas affilié à Nintendo et ne saurait être tenu responsable des dommages résultant de l'utilisation d'un CFW."
+      },
+      {
+        "title": "4. Compte utilisateur",
+        "lines": [
+          "4.1 Création du compte — Le compte est créé exclusivement via l'authentification Discord (OAuth2). En créant un compte, vous certifiez que les informations fournies sont exactes, que vous êtes le titulaire légitime du compte Discord utilisé et que vous n'usurpez pas l'identité d'un tiers.",
+          "4.2 Un seul compte — Un seul compte par utilisateur et par identifiant Discord est autorisé. La création de comptes multiples afin de contourner une suspension ou une limitation est interdite.",
+          "4.3 Sécurité du compte — Vous êtes responsable de la confidentialité de votre identifiant (UUID) et de votre clé AES. Ne les partagez jamais. En cas de compromission, vous pouvez réinitialiser votre clé AES depuis le tableau de bord."
+        ]
+      },
+      {
+        "title": "5. Utilisation acceptable",
+        "lines": [
+          "Vous vous engagez à utiliser le service uniquement pour son usage prévu : afficher votre activité de jeu 3DS sur votre profil Discord.",
+          "Il est strictement interdit de :"
+        ],
+        "list": [
+          "Abuser du service : envoyer des requêtes excessives ou automatisées afin de saturer le serveur ou contourner les limitations de taux (rate limiting)",
+          "Usurper des identités : utiliser l'identifiant Discord d'un tiers ou tenter de se faire passer pour un autre utilisateur",
+          "Contourner les mesures de sécurité : tenter d'accéder aux comptes d'autres utilisateurs, de déchiffrer les données d'autrui, ou de contourner la protection anti-bot (Cloudflare Turnstile)",
+          "Utiliser le service à des fins malveillantes : harcèlement, diffusion de contenu illégal, ou toute activité contraire aux lois en vigueur",
+          "Modifier le comportement du client vis-à-vis de l'API : l'utilisation d'un client dont le comportement vis-à-vis de l'API officielle a été modifié (notamment la fréquence des requêtes, les paramètres envoyés ou le protocole de communication) est interdite, sauf si ce client est utilisé avec votre propre serveur privé. Cette interdiction ne vise pas les fonctionnalités officiellement prises en charge par le client, qui permettent à l'utilisateur de modifier la requête via son fichier de paramètres et les RPC étendus provenant du dépôt officiel (https://github.com/3ds-presence/RPC-AddOns), ces éléments sont lus et interprétés par le code officiel sans modification de celui-ci"
+        ]
+      },
+      {
+        "title": "6. Propriété intellectuelle",
+        "lines": [
+          "6.1 Code source — Le code source du projet est publié sous licence GNU Affero General Public License v3.0 (AGPL-3.0). Vous pouvez le consulter, le copier, le modifier et le redistribuer dans le respect des termes de cette licence. Toute instance modifiée et mise à disposition du public via un réseau doit fournir l'accès à son code source (article 13 de l'AGPL-3.0).",
+          "6.2 Marques et droits des tiers — 3DS Presence est un projet indépendant. Il n'est ni affilié, ni approuvé, ni sponsorisé par Nintendo ou Discord Inc."
+        ],
+        "list": [
+          "Discord est une marque de Discord Inc.",
+          "Nintendo 3DS est une marque de Nintendo.",
+          "Les noms de jeux et leurs icônes appartiennent à leurs éditeurs respectifs."
+        ]
+      },
+      {
+        "title": "7. Disponibilité du service",
+        "lines": [
+          "Le service est fourni « tel quel » (as is), sans garantie de disponibilité, de fiabilité ou d'absence d'erreurs (conformément à la section 15 de l'AGPL-3.0).",
+          "Des interruptions temporaires peuvent survenir (maintenance, mise à jour, incident technique).",
+          "Le projet peut être interrompu ou arrêté à tout moment, sans préavis."
+        ]
+      },
+      {
+        "title": "8. Limitation de responsabilité",
+        "lines": ["Dans la limite maximale permise par la loi applicable :"],
+        "list": [
+          "Le projet 3DS Presence, son auteur et ses contributeurs ne sauraient être tenus responsables des dommages directs ou indirects résultant de l'utilisation ou de l'impossibilité d'utiliser le service (conformément à la section 16 de l'AGPL-3.0)",
+          "Vous êtes seul responsable de l'utilisation que vous faites du service et de votre console",
+          "Le projet ne peut pas être tenu responsable d'une suspension de votre compte Discord par Discord Inc., quelle qu'en soit la raison",
+          "Le projet ne peut pas être tenu responsable des conséquences de l'installation d'un custom firmware sur votre console"
+        ]
+      },
+      {
+        "title": "9. Suspension et résiliation",
+        "lines": [
+          "9.1 Par l'utilisateur — Vous pouvez supprimer votre compte à tout moment depuis le tableau de bord. La suppression est immédiate et définitive.",
+          "9.2 Par le service — Le projet se réserve le droit de suspendre ou supprimer tout compte en cas de violation des présentes conditions, et de limiter l'accès au service en cas d'abus (notamment via les limitations de taux et la protection anti-bot).",
+          "9.3 Inactivité — Les comptes inactifs (aucune connexion au service) pendant 3 ans sont automatiquement supprimés de la base de données."
+        ]
+      },
+      {
+        "title": "10. Données personnelles",
+        "lines": [
+          "Le traitement de vos données personnelles est régi par la Politique de Confidentialité. En utilisant le service, vous reconnaissez avoir pris connaissance de cette politique, notamment en ce qui concerne :"
+        ],
+        "list": [
+          "Les données collectées (identifiant Discord, UUID, clé AES, tokens OAuth2, informations de jeu, données Mii, adresse IP)",
+          "La base légale (consentement explicite)",
+          "Vos droits RGPD (accès, rectification, effacement, portabilité, opposition, retrait du consentement)",
+          "Les durées de conservation des données"
+        ]
+      },
+      {
+        "title": "11. Modifications des conditions",
+        "lines": ["Les présentes Conditions d'Utilisation peuvent être mises à jour ponctuellement. En cas de modification significative, les utilisateurs seront informés via le site web ou une annonce. L'utilisation continue du service après l'entrée en vigueur des modifications constitue une acceptation des nouvelles conditions."]
+      },
+      {
+        "title": "12. Droit applicable et juridiction",
+        "lines": ["Les présentes conditions sont régies par le droit français. En cas de litige, et à défaut de résolution amiable, les tribunaux français seront seuls compétents, sous réserve des dispositions impératives applicables dans le pays de résidence de l'utilisateur."]
+      },
+      {
+        "title": "13. Contact",
+        "lines": ["Pour toute question relative aux présentes Conditions d'Utilisation, au service ou à vos données personnelles : privacy@3ds-presence.top"]
       }
     ]
   },

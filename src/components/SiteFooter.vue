@@ -23,14 +23,19 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     <span>{{ $t('footer.license') }}</span>
     <span class="footer-separator">·</span>
     <a href="/privacy" @click.prevent="showPrivacy = true">{{ $t('footer.privacy') }}</a>
+    <span class="footer-separator">·</span>
+    <a href="/terms" @click.prevent="showTerms = true">{{ $t('footer.terms') }}</a>
 
     <PrivacyPolicyModal v-if="showPrivacy" @close="showPrivacy = false" />
+    <TermsOfServiceModal v-if="showTerms" @close="showTerms = false" />
   </footer>
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue'
 import PrivacyPolicyModal from './PrivacyPolicyModal.vue'
+import TermsOfServiceModal from './TermsOfServiceModal.vue'
 
 const showPrivacy = ref(false)
+const showTerms = ref(false)
 </script>

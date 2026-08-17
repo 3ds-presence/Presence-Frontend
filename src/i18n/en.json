@@ -27,7 +27,8 @@
   "footer": {
     "copyright": "© 2026 3DS Presence",
     "license": "Licensed under AGPL-3.0",
-    "privacy": "Privacy Policy"
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service"
   },
   "discordLogin": {
     "title": "Login",
@@ -38,24 +39,20 @@
   },
   "consent": {
     "title": "Welcome to 3DS Presence!",
-    "description": "Before creating your account, please review the data we collect:",
+    "description": "Before creating your account, please review the following documents:",
     "readPrivacy": "Read the Privacy Policy",
-    "checkbox": "I have read and accept the Privacy Policy",
+    "readTerms": "Read the Terms of Service",
+    "checkbox": "I have read and accept the Privacy Policy and the Terms of Service",
     "button": "Create my account",
     "submitting": "Creating account...",
     "error": {
       "invalidResponse": "Invalid server response",
       "expired": "Session expired, please login again."
-    },
-    "data": {
-      "discordId": "Your Discord user ID (to link your profile)",
-      "game": "The game you are currently playing on your 3DS",
-      "mii": "Your Mii avatar (optional)",
-      "ip": "Your IP address (temporarily stored in logs for security, 3 months max)"
     }
   },
   "privacy": {
     "title": "Privacy Policy",
+    "lastUpdated": "Last updated: August 8, 2026",
     "sections": [
       {
         "title": "1. Data Controller",
@@ -138,6 +135,127 @@
       {
         "title": "12. Contact",
         "lines": ["For any questions or requests regarding your personal data: privacy@3ds-presence.top"]
+      }
+    ]
+  },
+  "terms": {
+    "title": "Terms of Service",
+    "lastUpdated": "Last updated: August 17, 2026",
+    "sections": [
+      {
+        "title": "1. Acceptance of Terms",
+        "lines": [
+          "By accessing the website, creating an account, or using the 3DS Presence service, you agree to be bound by these Terms of Service. If you do not agree with these terms, you must not use the service.",
+          "Creating an account via Discord also implies acceptance of the Privacy Policy."
+        ]
+      },
+      {
+        "title": "2. Service Description",
+        "lines": [
+          "3DS Presence allows users to display the game they are playing on their Nintendo 3DS directly on their Discord profile (Discord Rich Presence).",
+          "The service includes:"
+        ],
+        "list": [
+          "A website allowing Discord login and account management",
+          "A backend server (API) processing activities",
+          "A Nintendo 3DS client (boot.firm) installed on the console",
+          "An activity generator and, optionally, a Mii avatar generation server"
+        ]
+      },
+      {
+        "title": "3. Eligibility",
+        "lines": ["To use the service, you must:"],
+        "list": [
+          "Be at least 13 years old (minimum age required by Discord to create an account)",
+          "If you reside in the European Union, be at least 15 years old or have the authorization of your legal guardian (in accordance with the GDPR)",
+          "Have a valid Discord account",
+          "Own a Nintendo 3DS with a custom firmware (CFW) installed, as well as a way to transfer files to the console's SD card"
+        ],
+        "warning": "⚠️ Warning — Custom Firmware: Installing a custom firmware (CFW) on your Nintendo 3DS may violate Nintendo's terms of service and void your warranty. You are solely responsible for installing the CFW and for any consequences arising from it. 3DS Presence is not affiliated with Nintendo and cannot be held responsible for any damage resulting from the use of a CFW."
+      },
+      {
+        "title": "4. User Account",
+        "lines": [
+          "4.1 Account Creation — The account is created exclusively through Discord authentication (OAuth2). By creating an account, you certify that the information provided is accurate, that you are the legitimate owner of the Discord account used, and that you are not impersonating a third party.",
+          "4.2 Single Account — Only one account per user and per Discord ID is allowed. Creating multiple accounts to circumvent a suspension or limitation is prohibited.",
+          "4.3 Account Security — You are responsible for the confidentiality of your identifier (UUID) and your AES key. Never share them. In case of compromise, you can reset your AES key from the dashboard."
+        ]
+      },
+      {
+        "title": "5. Acceptable Use",
+        "lines": [
+          "You agree to use the service only for its intended purpose: displaying your 3DS gaming activity on your Discord profile.",
+          "It is strictly forbidden to:"
+        ],
+        "list": [
+          "Abuse the service: sending excessive or automated requests to saturate the server or circumvent rate limiting",
+          "Impersonate others: using a third party's Discord ID or attempting to pose as another user",
+          "Bypass security measures: attempting to access other users' accounts, decrypt others' data, or bypass the anti-bot protection (Cloudflare Turnstile)",
+          "Use the service for malicious purposes: harassment, distribution of illegal content, or any activity contrary to applicable laws",
+          "Modify the client's behavior towards the API: using a client whose behavior towards the official API has been modified (notably the request frequency, the parameters sent, or the communication protocol) is prohibited, unless this client is used with your own private server. This prohibition does not cover officially supported client features, which allow the user to modify the request through their parameters file and extended RPC from the official repository (https://github.com/3ds-presence/RPC-AddOns), these elements are read and interpreted by the official code without modification of the client"
+        ]
+      },
+      {
+        "title": "6. Intellectual Property",
+        "lines": [
+          "6.1 Source Code — The project's source code is published under the GNU Affero General Public License v3.0 (AGPL-3.0). You may view, copy, modify, and redistribute it in accordance with the terms of this license. Any modified instance made publicly available over a network must provide access to its source code (Section 13 of AGPL-3.0).",
+          "6.2 Third-Party Trademarks and Rights — 3DS Presence is an independent project. It is neither affiliated with, nor approved by, nor sponsored by Nintendo or Discord Inc."
+        ],
+        "list": [
+          "Discord is a trademark of Discord Inc.",
+          "Nintendo 3DS is a trademark of Nintendo.",
+          "Game names and their icons belong to their respective publishers."
+        ]
+      },
+      {
+        "title": "7. Service Availability",
+        "lines": [
+          "The service is provided \"as is\", without any warranty of availability, reliability, or absence of errors (in accordance with Section 15 of AGPL-3.0).",
+          "Temporary interruptions may occur (maintenance, updates, technical incidents).",
+          "The project may be interrupted or discontinued at any time, without prior notice."
+        ]
+      },
+      {
+        "title": "8. Limitation of Liability",
+        "lines": ["To the maximum extent permitted by applicable law:"],
+        "list": [
+          "The 3DS Presence project, its author, and its contributors cannot be held liable for direct or indirect damages resulting from the use or inability to use the service (in accordance with Section 16 of AGPL-3.0)",
+          "You are solely responsible for your use of the service and your console",
+          "The project cannot be held responsible for a suspension of your Discord account by Discord Inc., for any reason",
+          "The project cannot be held responsible for the consequences of installing a custom firmware on your console"
+        ]
+      },
+      {
+        "title": "9. Suspension and Termination",
+        "lines": [
+          "9.1 By the User — You can delete your account at any time from the dashboard. Deletion is immediate and permanent.",
+          "9.2 By the Service — The project reserves the right to suspend or delete any account in the event of a violation of these terms, and to limit access to the service in case of abuse (notably through rate limiting and anti-bot protection).",
+          "9.3 Inactivity — Accounts inactive (no connection to the service) for 3 years are automatically deleted from the database."
+        ]
+      },
+      {
+        "title": "10. Personal Data",
+        "lines": [
+          "The processing of your personal data is governed by the Privacy Policy. By using the service, you acknowledge that you have read this policy, in particular regarding:"
+        ],
+        "list": [
+          "The data collected (Discord ID, UUID, AES key, OAuth2 tokens, game information, Mii data, IP address)",
+          "The legal basis (explicit consent)",
+          "Your GDPR rights (access, rectification, erasure, portability, objection, withdrawal of consent)",
+          "Data retention periods"
+        ]
+      },
+      {
+        "title": "11. Changes to These Terms",
+        "lines": ["These Terms of Service may be updated from time to time. In the event of a significant change, users will be informed via the website or an announcement. Continued use of the service after the changes take effect constitutes acceptance of the updated terms."]
+      },
+      {
+        "title": "12. Governing Law and Jurisdiction",
+        "lines": ["These terms are governed by French law. In the event of a dispute, and failing amicable resolution, the French courts shall have exclusive jurisdiction, subject to any mandatory provisions applicable in the user's country of residence."]
+      },
+      {
+        "title": "13. Contact",
+        "lines": ["For any questions regarding these Terms of Service, the service, or your personal data: privacy@3ds-presence.top"]
       }
     ]
   },

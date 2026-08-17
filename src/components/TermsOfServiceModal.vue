@@ -20,16 +20,16 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   <div class="modal-overlay" @click.self="$emit('close')">
     <div class="modal-content">
       <button type="button" class="modal-close" @click="$emit('close')">&times;</button>
-      <h2>{{ $t('privacy.title') }}</h2>
-      <p class="modal-updated">{{ $t('privacy.lastUpdated') }}</p>
+      <h2>{{ $t('terms.title') }}</h2>
+      <p class="modal-updated">{{ $t('terms.lastUpdated') }}</p>
 
-      <PrivacyPolicyContent />
+      <TermsOfServiceContent />
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import PrivacyPolicyContent from './PrivacyPolicyContent.vue'
+import TermsOfServiceContent from './TermsOfServiceContent.vue'
 
 defineEmits<{
   (e: 'close'): void
