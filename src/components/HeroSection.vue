@@ -65,6 +65,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
       <ul class="features-list">
         <li v-for="(item, index) in featureItems" :key="index">{{ item }}</li>
       </ul>
+      <a href="/faq" class="features-faq-link">{{ $t('features.faqLink') }}</a>
     </div>
   </div>
 </template>
@@ -119,5 +120,17 @@ const featureItems = computed(() => (tm('features.items') as unknown as string[]
   font-size: 14px;
   color: #666;
   margin: 0 0 12px 0;
+}
+
+.features-faq-link {
+  display: inline-block;
+  margin-top: 16px;
+  color: #5865f2;
+  text-decoration: underline;
+  font-size: 14px;
+}
+
+.features-faq-link:hover {
+  color: #4752c4;
 }
 </style>

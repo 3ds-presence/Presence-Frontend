@@ -17,7 +17,8 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 -->
 
 <template>
-  <TermsOfServicePage v-if="isTermsPage" />
+  <FaqPage v-if="isFaqPage" />
+  <TermsOfServicePage v-else-if="isTermsPage" />
   <PrivacyPolicyPage v-else-if="isPrivacyPage" />
 
   <div v-else>
@@ -49,7 +50,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 </template>
 
 <script setup lang="ts">
-import { ref, computed, onMounted } from 'vue'
+import { ref, computed, onMounted, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 import LanguageSwitcher from './components/LanguageSwitcher.vue'
 import HeroSection from './components/HeroSection.vue'
@@ -60,8 +61,10 @@ import DownloadConfig from './components/DownloadConfig.vue'
 import InstallationSection from './components/InstallationSection.vue'
 import PrivacyPolicyPage from './components/PrivacyPolicyPage.vue'
 import TermsOfServicePage from './components/TermsOfServicePage.vue'
+import FaqPage from './components/FaqPage.vue'
+import { updateSeo } from './utils/seo'
 
-const { t } = useI18n()
+const { t, locale } = useI18n()
 
 const uuid = ref<string | null>(null)
 const aesKeyHex = ref<string | null>(null)
@@ -71,6 +74,7 @@ const processing = ref(false)
 const showConsent = ref(false)
 const isPrivacyPage = ref(window.location.pathname === '/privacy')
 const isTermsPage = ref(window.location.pathname === '/terms')
+const isFaqPage = ref(window.location.pathname === '/faq')
 
 const hasInfo = computed(() => Boolean(uuid.value && aesKeyHex.value))
 const accountInfo = computed(() => {
@@ -101,10 +105,26 @@ function onConsentError(message: string) {
   tempToken.value = null
 }
 
+function updateHomeSeo() {
+  updateSeo(
+    `${t('app.title')}: Discord RPC for Nintendo 3DS`,
+    'Discord Rich Presence for Nintendo 3DS: Show the game you are playing on your Nintendo 3DS directly in your Discord status. Free and open source.'
+  )
+}
+
+watch(locale, () => {
+  // Only update home SEO on non-standalone pages.
+  // Standalone pages (privacy/terms/faq) manage their own SEO.
+  if (!isPrivacyPage.value && !isTermsPage.value && !isFaqPage.value) {
+    updateHomeSeo()
+  }
+})
+
 onMounted(async () => {
-  if (isPrivacyPage.value || isTermsPage.value) {
+  if (isPrivacyPage.value || isTermsPage.value || isFaqPage.value) {
     return
   }
+  updateHomeSeo()
 
   const params = new URLSearchParams(window.location.search)
   const code = params.get('code')

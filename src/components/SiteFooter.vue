@@ -25,9 +25,12 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     <a href="/privacy" @click.prevent="showPrivacy = true">{{ $t('footer.privacy') }}</a>
     <span class="footer-separator">·</span>
     <a href="/terms" @click.prevent="showTerms = true">{{ $t('footer.terms') }}</a>
+    <span class="footer-separator">·</span>
+    <a href="/faq" @click.prevent="showFaq = true">{{ $t('footer.faq') }}</a>
 
     <PrivacyPolicyModal v-if="showPrivacy" @close="showPrivacy = false" />
     <TermsOfServiceModal v-if="showTerms" @close="showTerms = false" />
+    <FaqModal v-if="showFaq" @close="showFaq = false" />
   </footer>
 </template>
 
@@ -35,7 +38,9 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 import { ref } from 'vue'
 import PrivacyPolicyModal from './PrivacyPolicyModal.vue'
 import TermsOfServiceModal from './TermsOfServiceModal.vue'
+import FaqModal from './FaqModal.vue'
 
 const showPrivacy = ref(false)
 const showTerms = ref(false)
+const showFaq = ref(false)
 </script>

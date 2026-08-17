@@ -35,11 +35,15 @@ import { onMounted, onUnmounted, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 import LanguageSwitcher from './LanguageSwitcher.vue'
 import PrivacyPolicyContent from './PrivacyPolicyContent.vue'
+import { updateSeo } from '../utils/seo'
 
 const { t, locale } = useI18n()
 
 function updateTitle() {
-  document.title = `${t('privacy.title')} — 3DS Presence`
+  updateSeo(
+    `${t('privacy.title')} — 3DS Presence`,
+    '3DS Presence Privacy Policy: what data is collected, how it is used and your GDPR rights.'
+  )
 }
 
 onMounted(() => {

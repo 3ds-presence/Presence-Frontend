@@ -17,37 +17,66 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 -->
 
 <template>
-  <main class="terms-page">
+  <main class="faq-page">
     <LanguageSwitcher />
 
-    <a href="/" class="terms-back">{{ $t('common.backToHome') }}</a>
+    <a href="/" class="faq-back">{{ $t('common.backToHome') }}</a>
 
-    <article class="terms-article">
-      <h1 class="terms-title">{{ $t('terms.title') }}</h1>
-      <p class="terms-updated">{{ $t('terms.lastUpdated') }}</p>
-      <TermsOfServiceContent />
+    <article class="faq-article">
+      <h1 class="faq-title">{{ $t('faq.title') }}</h1>
+      <p class="faq-updated">{{ $t('faq.lastUpdated') }}</p>
+      <FaqAccordion />
     </article>
   </main>
 </template>
 
 <script setup lang="ts">
-import { onMounted, onUnmounted, watch } from 'vue'
+import { onMounted, onUnmounted, watch, computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 import LanguageSwitcher from './LanguageSwitcher.vue'
-import TermsOfServiceContent from './TermsOfServiceContent.vue'
-import { updateSeo } from '../utils/seo'
+import FaqAccordion from './FaqAccordion.vue'
+import { updateSeo, injectJsonLd } from '../utils/seo'
 
-const { t, locale } = useI18n()
+const { t, tm, locale } = useI18n()
 
-function updateTitle() {
+let cleanupJsonLd: (() => void) | null = null
+
+const faqCategories = computed(() => {
+  return (tm('faq.categories') as unknown as Array<{
+    category: string
+    items: Array<{ question: string; answer: string }>
+  }>) ?? []
+})
+
+function updateTitleAndMeta() {
   updateSeo(
-    `${t('terms.title')} — 3DS Presence`,
-    '3DS Presence Terms of Service: service usage rules, eligibility, intellectual property and liabilities.'
+    `${t('faq.title')} — 3DS Presence`,
+    '3DS Presence FAQ: installation, configuration, troubleshooting, account and privacy. Find answers to your questions.'
   )
 }
 
+function buildFaqJsonLd() {
+  const mainEntity = faqCategories.value.flatMap((cat) =>
+    cat.items.map((item) => ({
+      '@type': 'Question',
+      name: item.question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: item.answer,
+      },
+    }))
+  )
+
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity,
+  }
+}
+
 onMounted(() => {
-  updateTitle()
+  updateTitleAndMeta()
+  cleanupJsonLd = injectJsonLd(buildFaqJsonLd())
 
   // The global #app container constrains the layout to max-width: 700px.
   // Lift that constraint so this standalone page can use its own width.
@@ -60,6 +89,11 @@ onMounted(() => {
 })
 
 onUnmounted(() => {
+  if (cleanupJsonLd) {
+    cleanupJsonLd()
+    cleanupJsonLd = null
+  }
+
   const app = document.getElementById('app')
   if (app) {
     app.style.maxWidth = ''
@@ -69,18 +103,22 @@ onUnmounted(() => {
 })
 
 watch(locale, () => {
-  updateTitle()
+  updateTitleAndMeta()
+  if (cleanupJsonLd) {
+    cleanupJsonLd()
+  }
+  cleanupJsonLd = injectJsonLd(buildFaqJsonLd())
 })
 </script>
 
 <style scoped>
-.terms-page {
+.faq-page {
   max-width: 1200px;
   margin: 40px auto;
   padding: 0 20px;
 }
 
-.terms-back {
+.faq-back {
   display: inline-block;
   margin-bottom: 20px;
   color: #5865f2;
@@ -88,19 +126,19 @@ watch(locale, () => {
   font-size: 14px;
 }
 
-.terms-back:hover {
+.faq-back:hover {
   color: #4752c4;
   text-decoration: underline;
 }
 
-.terms-article {
+.faq-article {
   background: #fff;
   border: 1px solid #ddd;
   border-radius: 12px;
   padding: 32px;
 }
 
-.terms-title {
+.faq-title {
   font-size: 24px;
   font-weight: 600;
   margin-bottom: 4px;
@@ -108,7 +146,7 @@ watch(locale, () => {
   border-bottom: 1px solid #eee;
 }
 
-.terms-updated {
+.faq-updated {
   font-size: 13px;
   color: #888;
   margin-bottom: 16px;

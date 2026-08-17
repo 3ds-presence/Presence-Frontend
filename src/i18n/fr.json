@@ -22,13 +22,15 @@
       "Votre avatar Mii affiché dans votre présence (optionnel)",
       "Compatible avec tous les jeux 3DS",
       "Fonctionne avec un custom firmware (CFW) : boot.firm + fichier de config sur votre carte SD"
-    ]
+    ],
+    "faqLink": "Une question ? Consultez la FAQ"
   },
   "footer": {
     "copyright": "© 2026 3DS Presence",
     "license": "Sous licence AGPL-3.0",
     "privacy": "Politique de Confidentialité",
-    "terms": "Conditions d'Utilisation"
+    "terms": "Conditions d'Utilisation",
+    "faq": "FAQ"
   },
   "discordLogin": {
     "title": "Connexion",
@@ -261,6 +263,38 @@
       }
     ]
   },
+  "faq": {
+    "title": "FAQ",
+    "lastUpdated": "Dernière mise à jour : 17 août 2026",
+    "categories": [
+      {
+        "category": "TODO",
+        "items": [
+          {
+            "question": "Lorem ?",
+            "answer": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent laoreet et est in mollis. Donec vel dignissim mi. Proin viverra nulla in ante finibus, nec faucibus nisi porta. Vestibulum elementum mollis neque eget cursus. Fusce et tortor id ligula lacinia rutrum. Cras eleifend sapien in quam posuere, id suscipit ligula vulputate. Donec consectetur orci porttitor elit fringilla dapibus. Fusce justo lectus, porttitor nec hendrerit elementum, ultricies non purus. Fusce scelerisque porttitor nisl, eget pellentesque neque tincidunt in. Fusce lacinia libero id ante blandit dapibus. Curabitur ornare auctor justo, ut varius velit elementum ut."
+          },
+          {
+            "question":"Ipsum ?",
+            "answer":" Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vivamus aliquet, leo sed tristique tristique, felis risus lobortis felis, eu sagittis tellus justo vel mauris. Phasellus in hendrerit nulla. Pellentesque faucibus blandit purus nec accumsan. Sed cursus sem eget diam elementum, et ultrices odio sollicitudin. Etiam luctus purus id elementum egestas. Nunc elementum gravida lacus. Aliquam tincidunt quis neque ut accumsan. Nullam molestie accumsan justo in imperdiet. In nec sapien gravida, aliquam leo eu, aliquam ipsum. Nulla at scelerisque ante. Sed non erat eu eros faucibus accumsan vitae et ligula. Pellentesque ullamcorper augue quis bibendum aliquet. Ut eget massa malesuada, faucibus ante non, aliquet leo. Nullam semper eros at tortor finibus pellentesque."
+          }
+        ]
+      },
+      {
+        "category": "TODO 2",
+        "items": [
+          {
+            "question": "Lorem ?",
+            "answer": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent laoreet et est in mollis. Donec vel dignissim mi. Proin viverra nulla in ante finibus, nec faucibus nisi porta. Vestibulum elementum mollis neque eget cursus. Fusce et tortor id ligula lacinia rutrum. Cras eleifend sapien in quam posuere, id suscipit ligula vulputate. Donec consectetur orci porttitor elit fringilla dapibus. Fusce justo lectus, porttitor nec hendrerit elementum, ultricies non purus. Fusce scelerisque porttitor nisl, eget pellentesque neque tincidunt in. Fusce lacinia libero id ante blandit dapibus. Curabitur ornare auctor justo, ut varius velit elementum ut."
+          },
+          {
+            "question":"Ipsum ?",
+            "answer":" Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vivamus aliquet, leo sed tristique tristique, felis risus lobortis felis, eu sagittis tellus justo vel mauris. Phasellus in hendrerit nulla. Pellentesque faucibus blandit purus nec accumsan. Sed cursus sem eget diam elementum, et ultrices odio sollicitudin. Etiam luctus purus id elementum egestas. Nunc elementum gravida lacus. Aliquam tincidunt quis neque ut accumsan. Nullam molestie accumsan justo in imperdiet. In nec sapien gravida, aliquam leo eu, aliquam ipsum. Nulla at scelerisque ante. Sed non erat eu eros faucibus accumsan vitae et ligula. Pellentesque ullamcorper augue quis bibendum aliquet. Ut eget massa malesuada, faucibus ante non, aliquet leo. Nullam semper eros at tortor finibus pellentesque."
+          }
+        ]
+      }
+    ]
+  },
   "accountInfo": {
     "title": "Informations du compte",
     "uuid": "UUID",
@@ -290,14 +324,18 @@
     "prerequisites": "Prérequis",
     "prerequisitesText": "Pour utiliser 3DS Presence sur votre Nintendo 3DS, vous devez avoir installé un custom firmware (CFW). Suivez un guide comme 3ds.hacks.guide si ce n'est pas encore fait. Vous aurez aussi besoin d'un moyen de transférer des fichiers vers votre carte SD.",
     "procedure": "Procédure d'installation",
-    "procedureText": "Téléchargez Presence3DS, ainsi que la configuration et placez-la sur votre carte SD.",
+    "procedureText": "Préparer la carte SD et configurer Presence3DS",
     "steps": "Étapes",
     "stepsList": [
       "Téléchargez le fichier boot.firm depuis le lien ci-dessous.",
       "Copiez le fichier boot.firm à la racine de votre carte SD.",
       "Téléchargez le fichier de configuration depuis le lien ci-dessus.",
       "Copiez le fichier de configuration dans le dossier presence3ds/ de votre carte SD.",
-      "Réinsérez la carte SD dans votre 3DS.",
+      "Réinsérez la carte SD dans votre 3DS et démarrez-la ou redémarrez-la.",
+      "Ouvrez le menu Rosalina (par défaut : L + DPAD-Bas + Select).",
+      "Dans le menu Rosalina, sélectionnez \"Discord RPC...\".",
+      "Configurez vos préférences (dont le démarrage automatique) dans \"User Preferences\".",
+      "Démarrez le RPC via \"Start Discord RPC\".",
       "Votre statut Discord se mettra désormais à jour automatiquement pendant que vous jouez !"
     ],
     "downloadBinary": "Télécharger Presence3DS"
