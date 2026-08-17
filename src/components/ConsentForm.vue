@@ -26,7 +26,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     </ul>
 
     <p class="consent-privacy-link">
-      <a href="#" @click.prevent="showPrivacy = true">{{ $t('consent.readPrivacy') }}</a>
+      <a href="/privacy" @click.prevent="showPrivacy = true">{{ $t('consent.readPrivacy') }}</a>
     </p>
 
     <div class="consent-checkbox">

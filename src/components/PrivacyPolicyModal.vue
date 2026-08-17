@@ -19,41 +19,20 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 <template>
   <div class="modal-overlay" @click.self="$emit('close')">
     <div class="modal-content">
-      <button class="modal-close" @click="$emit('close')">&times;</button>
+      <button type="button" class="modal-close" @click="$emit('close')">&times;</button>
       <h2>{{ $t('privacy.title') }}</h2>
 
-      <div class="privacy-text">
-        <section v-for="(section, idx) in sections" :key="idx">
-          <h3 v-if="section.title">{{ section.title }}</h3>
-          <p v-for="(line, i) in section.lines" :key="i">{{ line }}</p>
-          <ul v-if="section.list">
-            <li v-for="(item, i) in section.list" :key="i">{{ item }}</li>
-          </ul>
-        </section>
-      </div>
+      <PrivacyPolicyContent />
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
-import { useI18n } from 'vue-i18n'
+import PrivacyPolicyContent from './PrivacyPolicyContent.vue'
 
 defineEmits<{
   (e: 'close'): void
 }>()
-
-interface PrivacySection {
-  title?: string
-  lines?: string[]
-  list?: string[]
-}
-
-const { tm } = useI18n()
-
-const sections = computed<PrivacySection[]>(() => {
-  return (tm('privacy.sections') as unknown as PrivacySection[]) ?? []
-})
 </script>
 
 <style scoped>
@@ -74,7 +53,7 @@ const sections = computed<PrivacySection[]>(() => {
   background: #fff;
   border-radius: 12px;
   padding: 32px;
-  max-width: 700px;
+  max-width: 900px;
   max-height: 80vh;
   overflow-y: auto;
   position: relative;
@@ -93,31 +72,5 @@ const sections = computed<PrivacySection[]>(() => {
 
 .modal-close:hover {
   color: #000;
-}
-
-.privacy-text {
-  text-align: left;
-  line-height: 1.6;
-  color: #333;
-}
-
-.privacy-text h3 {
-  margin-top: 20px;
-  margin-bottom: 8px;
-  font-size: 15px;
-  color: #222;
-}
-
-.privacy-text p {
-  margin-bottom: 8px;
-}
-
-.privacy-text ul {
-  margin-bottom: 8px;
-  padding-left: 20px;
-}
-
-.privacy-text li {
-  margin-bottom: 4px;
 }
 </style>

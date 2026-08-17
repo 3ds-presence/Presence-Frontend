@@ -22,7 +22,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     <span class="footer-separator">·</span>
     <span>{{ $t('footer.license') }}</span>
     <span class="footer-separator">·</span>
-    <a href="#" @click.prevent="showPrivacy = true">{{ $t('footer.privacy') }}</a>
+    <a href="/privacy" @click.prevent="showPrivacy = true">{{ $t('footer.privacy') }}</a>
 
     <PrivacyPolicyModal v-if="showPrivacy" @close="showPrivacy = false" />
   </footer>

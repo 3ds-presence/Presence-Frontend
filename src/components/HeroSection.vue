@@ -19,7 +19,8 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 <template>
   <div>
     <div class="card hero-section">
-      <h1 class="hero-title">{{ $t('app.title') }}</h1>
+      <img src="/banner.svg" :alt="$t('app.title')" class="hero-banner" />
+      <h1 class="hero-title sr-only">{{ $t('app.title') }}</h1>
       <p class="hero-description">{{ $t('hero.description') }}</p>
 
       <div class="hero-links">
@@ -80,6 +81,25 @@ const featureItems = computed(() => (tm('features.items') as unknown as string[]
 </script>
 
 <style scoped>
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.hero-banner {
+  max-width: 75%;
+  height: auto;
+  display: block;
+  margin: 0 auto 0 auto;
+}
+
 .download-card {
   padding: 20px;
   display: flex;

@@ -1,4 +1,7 @@
 {
+  "common": {
+    "backToHome": "← Retour à l'accueil"
+  },
   "app": {
     "title": "3DS Presence",
     "processing": "Connexion en cours...",

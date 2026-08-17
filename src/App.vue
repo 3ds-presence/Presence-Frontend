@@ -17,7 +17,9 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 -->
 
 <template>
-  <div>
+  <PrivacyPolicyPage v-if="isPrivacyPage" />
+
+  <div v-else>
     <LanguageSwitcher />
 
     <div v-if="error" class="error-msg">
@@ -55,6 +57,7 @@ import SiteFooter from './components/SiteFooter.vue'
 import AccountInfo from './components/AccountInfo.vue'
 import DownloadConfig from './components/DownloadConfig.vue'
 import InstallationSection from './components/InstallationSection.vue'
+import PrivacyPolicyPage from './components/PrivacyPolicyPage.vue'
 
 const { t } = useI18n()
 
@@ -64,6 +67,7 @@ const tempToken = ref<string | null>(null)
 const error = ref<string | null>(null)
 const processing = ref(false)
 const showConsent = ref(false)
+const isPrivacyPage = ref(window.location.pathname === '/privacy')
 
 const hasInfo = computed(() => Boolean(uuid.value && aesKeyHex.value))
 const accountInfo = computed(() => {
@@ -95,6 +99,10 @@ function onConsentError(message: string) {
 }
 
 onMounted(async () => {
+  if (isPrivacyPage.value) {
+    return
+  }
+
   const params = new URLSearchParams(window.location.search)
   const code = params.get('code')
   const state = params.get('state')
