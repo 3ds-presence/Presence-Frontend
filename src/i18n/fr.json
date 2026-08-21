@@ -268,28 +268,87 @@
     "lastUpdated": "Dernière mise à jour : 17 août 2026",
     "categories": [
       {
-        "category": "TODO",
+        "category": "Général",
         "items": [
           {
-            "question": "Lorem ?",
-            "answer": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent laoreet et est in mollis. Donec vel dignissim mi. Proin viverra nulla in ante finibus, nec faucibus nisi porta. Vestibulum elementum mollis neque eget cursus. Fusce et tortor id ligula lacinia rutrum. Cras eleifend sapien in quam posuere, id suscipit ligula vulputate. Donec consectetur orci porttitor elit fringilla dapibus. Fusce justo lectus, porttitor nec hendrerit elementum, ultricies non purus. Fusce scelerisque porttitor nisl, eget pellentesque neque tincidunt in. Fusce lacinia libero id ante blandit dapibus. Curabitur ornare auctor justo, ut varius velit elementum ut."
+            "question": "Qu'est-ce que 3DS Presence ?",
+            "answer": "3DS Presence est un service open source qui permet d'afficher le jeu auquel vous jouez sur votre Nintendo 3DS directement sur votre profil Discord, via Discord Rich Presence."
           },
           {
-            "question":"Ipsum ?",
-            "answer":" Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vivamus aliquet, leo sed tristique tristique, felis risus lobortis felis, eu sagittis tellus justo vel mauris. Phasellus in hendrerit nulla. Pellentesque faucibus blandit purus nec accumsan. Sed cursus sem eget diam elementum, et ultrices odio sollicitudin. Etiam luctus purus id elementum egestas. Nunc elementum gravida lacus. Aliquam tincidunt quis neque ut accumsan. Nullam molestie accumsan justo in imperdiet. In nec sapien gravida, aliquam leo eu, aliquam ipsum. Nulla at scelerisque ante. Sed non erat eu eros faucibus accumsan vitae et ligula. Pellentesque ullamcorper augue quis bibendum aliquet. Ut eget massa malesuada, faucibus ante non, aliquet leo. Nullam semper eros at tortor finibus pellentesque."
+            "question": "3DS Presence est-il gratuit ?",
+            "answer": "Oui, 3DS Presence est entièrement gratuit et open source, publié sous licence GNU Affero General Public License v3.0 (AGPL-3.0). Vous pouvez consulter le code source sur GitHub."
+          },
+          {
+            "question": "3DS Presence est-il affilié à Nintendo ou Discord ?",
+            "answer": "Non. 3DS Presence est un projet indépendant. Il n'est ni affilié, ni approuvé, ni sponsorisé par Nintendo ou Discord. Les marques et noms de jeux appartiennent à leurs propriétaires respectifs."
+          },
+          {
+            "question": "Quelle est la différence entre 3DS Presence et Presence3DS ?",
+            "answer": "3DS Presence est le nom du projet et du site, tandis que Presence3DS est le fork de Luma3DS utilisé dans le projet pour connecter la 3DS au serveur de 3DS Presence."
+          },
+          {
+            "question": "Quelles sont les conditions d'utilisation de 3DS Presence ?",
+            "answer": "Vous pouvez consulter les conditions d'utilisation sur : https://3ds-presence.top/terms."
           }
         ]
       },
       {
-        "category": "TODO 2",
+        "category": "Installation",
         "items": [
           {
-            "question": "Lorem ?",
-            "answer": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent laoreet et est in mollis. Donec vel dignissim mi. Proin viverra nulla in ante finibus, nec faucibus nisi porta. Vestibulum elementum mollis neque eget cursus. Fusce et tortor id ligula lacinia rutrum. Cras eleifend sapien in quam posuere, id suscipit ligula vulputate. Donec consectetur orci porttitor elit fringilla dapibus. Fusce justo lectus, porttitor nec hendrerit elementum, ultricies non purus. Fusce scelerisque porttitor nisl, eget pellentesque neque tincidunt in. Fusce lacinia libero id ante blandit dapibus. Curabitur ornare auctor justo, ut varius velit elementum ut."
+            "question": "Quels sont les prérequis pour utiliser 3DS Presence ?",
+            "answer": "Vous devez disposer d'une Nintendo 3DS avec boot9strap installé. Si vous avez LumaCFW, alors vous avez boot9strap. Vous aurez également besoin d'un compte Discord et d'un moyen de transférer des fichiers vers la carte SD de votre console. Si vous n'avez pas encore installé boot9strap, suivez un guide (recommandé : 3ds.hacks.guide)."
           },
           {
-            "question":"Ipsum ?",
-            "answer":" Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vivamus aliquet, leo sed tristique tristique, felis risus lobortis felis, eu sagittis tellus justo vel mauris. Phasellus in hendrerit nulla. Pellentesque faucibus blandit purus nec accumsan. Sed cursus sem eget diam elementum, et ultrices odio sollicitudin. Etiam luctus purus id elementum egestas. Nunc elementum gravida lacus. Aliquam tincidunt quis neque ut accumsan. Nullam molestie accumsan justo in imperdiet. In nec sapien gravida, aliquam leo eu, aliquam ipsum. Nulla at scelerisque ante. Sed non erat eu eros faucibus accumsan vitae et ligula. Pellentesque ullamcorper augue quis bibendum aliquet. Ut eget massa malesuada, faucibus ante non, aliquet leo. Nullam semper eros at tortor finibus pellentesque."
+            "question": "Comment installer 3DS Presence sur ma 3DS ?",
+            "answer": "Vous aurez besoin du dernier boot.firm de Presence3DS disponible sur le site, ainsi que d'un compte sur 3DS Presence. Pour plus d'informations, suivez le guide présent sur la page une fois connecté."
+          }
+        ]
+      },
+      {
+        "category": "Compte et configuration",
+        "items": [
+          {
+            "question": "Comment créer un compte ?",
+            "answer": "La création de compte se fait exclusivement via l'authentification Discord (OAuth2). Cliquez sur le bouton \"Login with Discord\" sur la page d'accueil, acceptez la Politique de Confidentialité et les Conditions d'Utilisation, et votre compte sera créé automatiquement."
+          },
+          {
+            "question": "Comment télécharger mon fichier de configuration ?",
+            "answer": "Après vous être connecté avec Discord, votre UUID et votre clé AES s'affichent sur la page. Cliquez sur le bouton \"Télécharger la configuration\" pour obtenir le fichier de configuration à placer dans le dossier presence3ds/ de votre carte SD."
+          },
+          {
+            "question": "Comment supprimer mon compte ?",
+            "answer": "Connectez-vous avec Discord, puis cliquez sur \"Supprimer mon compte\" dans les paramètres du compte. La suppression est immédiate et définitive. Toutes vos données seront effacées de la base de données."
+          }
+        ]
+      },
+      {
+        "category": "Dépannage",
+        "items": [
+          {
+            "question": "Mon statut Discord ne se met pas à jour. Que faire ?",
+            "answer": "Ouvrez le menu Rosalina, puis l'entrée \"Discord RPC...\" et vérifiez que vous êtes bien connecté au serveur 3DS Presence. Si vous n'êtes pas connecté, connectez-vous. Si la 3DS refuse de se connecter, ouvrez le menu \"View Log\" pour avoir plus d'informations sur la cause du problème. Si vous êtes connecté mais que la RPC ne s'affiche pas, demandez de l'assistance sur le serveur Discord disponible sur la page d'accueil."
+          },
+          {
+            "question": "Le menu Rosalina ne s'ouvre pas. Que faire ?",
+            "answer": "Assurez-vous que Presence3DS est correctement installé et à jour. Le menu Rosalina s'ouvre par défaut avec la combinaison L + DPAD-Bas + Select, mais il est possible de changer les touches pour accéder à ce menu. Si vous avez changé les touches pour accéder au menu, vous devez utiliser vos touches personnalisées."
+          }
+        ]
+      },
+      {
+        "category": "Confidentialité et données",
+        "items": [
+          {
+            "question": "Quelles données sont collectées et comment sont-elles utilisées ?",
+            "answer": "Vous pouvez consulter la manière dont vos données sont collectées et utilisées sur : https://3ds-presence.top/privacy."
+          },
+          {
+            "question": "Que peut-il se passer et que faire si ma clé AES est compromise ?",
+            "answer": "Si quelqu'un possède votre clé AES ainsi que votre UUID, cette personne peut seulement mettre à jour votre RPC à distance. Si elle est compromise, vous pouvez réinitialiser votre clé AES depuis le tableau de bord de votre compte. Cliquez sur \"Réinitialiser la clé AES\" dans les paramètres ; une nouvelle clé sera générée et votre ancienne clé deviendra invalide. Vous devrez également mettre à jour le fichier de configuration sur votre 3DS."
+          },
+          {
+            "question": "Comment fonctionne la sécurité ?",
+            "answer": "Le site web et les routes de l'API non destinées à la 3DS sont accessibles uniquement en HTTPS. Pour garder la connexion entre la 3DS et le serveur la plus légère possible, HTTPS n'est pas utilisé car trop complexe. À la place, la sécurité est assurée par le chiffrement AES et par un nonce de session. Ainsi, même si une personne intercepte la connexion entre la 3DS et le serveur, elle ne pourra pas modifier la requête sans que le serveur s'en rende compte. Le nonce est initialisé de manière aléatoire et est incrémenté à chaque échange, ce qui évite les attaques par rejeu."
           }
         ]
       }
