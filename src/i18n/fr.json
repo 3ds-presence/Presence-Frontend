@@ -80,11 +80,15 @@
       },
       {
         "title": "3. Finalité",
-        "lines": ["Le seul but du traitement est de fournir le Discord Rich Presence pour Nintendo 3DS : afficher votre jeu en cours sur votre profil Discord."]
+        "lines": [
+          "Le seul but du traitement est de fournir le Discord Rich Presence pour Nintendo 3DS : afficher votre jeu en cours sur votre profil Discord."
+        ]
       },
       {
         "title": "4. Base légale",
-        "lines": ["Votre consentement explicite. En cochant la case et en créant un compte, vous acceptez cette politique de confidentialité."]
+        "lines": [
+          "Votre consentement explicite. En cochant la case et en créant un compte, vous acceptez cette politique de confidentialité."
+        ]
       },
       {
         "title": "5. Destinataires des données",
@@ -103,7 +107,9 @@
       },
       {
         "title": "7. Vos droits (RGPD)",
-        "lines": ["Vous avez les droits suivants :"],
+        "lines": [
+          "Vous avez les droits suivants :"
+        ],
         "list": [
           "Droit d'accès — exportez vos données depuis le tableau de bord (format JSON)",
           "Droit de rectification — contactez-nous pour corriger des données inexactes",
@@ -130,15 +136,21 @@
       },
       {
         "title": "10. Hébergement",
-        "lines": ["Ce service est auto-hébergé sur un serveur personnel situé en France."]
+        "lines": [
+          "Ce service est auto-hébergé sur un serveur personnel situé en France."
+        ]
       },
       {
         "title": "11. Modifications de cette politique",
-        "lines": ["Cette politique peut être mise à jour occasionnellement. Les utilisateurs seront informés des changements importants via le site web ou une annonce Discord. L'utilisation continue du service après les modifications constitue une acceptation de la politique mise à jour."]
+        "lines": [
+          "Cette politique peut être mise à jour occasionnellement. Les utilisateurs seront informés des changements importants via le site web ou une annonce Discord. L'utilisation continue du service après les modifications constitue une acceptation de la politique mise à jour."
+        ]
       },
       {
         "title": "12. Contact",
-        "lines": ["Pour toute question ou demande concernant vos données personnelles : privacy@3ds-presence.top"]
+        "lines": [
+          "Pour toute question ou demande concernant vos données personnelles : privacy@3ds-presence.top"
+        ]
       }
     ]
   },
@@ -168,7 +180,9 @@
       },
       {
         "title": "3. Éligibilité",
-        "lines": ["Pour utiliser le service, vous devez :"],
+        "lines": [
+          "Pour utiliser le service, vous devez :"
+        ],
         "list": [
           "Avoir au moins 13 ans (âge minimum requis par Discord pour créer un compte)",
           "Si vous résidez dans l'Union Européenne, avoir au moins 15 ans ou disposer de l'autorisation de votre représentant légal (conformément au RGPD)",
@@ -221,7 +235,9 @@
       },
       {
         "title": "8. Limitation de responsabilité",
-        "lines": ["Dans la limite maximale permise par la loi applicable :"],
+        "lines": [
+          "Dans la limite maximale permise par la loi applicable :"
+        ],
         "list": [
           "Le projet 3DS Presence, son auteur et ses contributeurs ne sauraient être tenus responsables des dommages directs ou indirects résultant de l'utilisation ou de l'impossibilité d'utiliser le service (conformément à la section 16 de l'AGPL-3.0)",
           "Vous êtes seul responsable de l'utilisation que vous faites du service et de votre console",
@@ -251,15 +267,21 @@
       },
       {
         "title": "11. Modifications des conditions",
-        "lines": ["Les présentes Conditions d'Utilisation peuvent être mises à jour ponctuellement. En cas de modification significative, les utilisateurs seront informés via le site web ou une annonce. L'utilisation continue du service après l'entrée en vigueur des modifications constitue une acceptation des nouvelles conditions."]
+        "lines": [
+          "Les présentes Conditions d'Utilisation peuvent être mises à jour ponctuellement. En cas de modification significative, les utilisateurs seront informés via le site web ou une annonce. L'utilisation continue du service après l'entrée en vigueur des modifications constitue une acceptation des nouvelles conditions."
+        ]
       },
       {
         "title": "12. Droit applicable et juridiction",
-        "lines": ["Les présentes conditions sont régies par le droit français. En cas de litige, et à défaut de résolution amiable, les tribunaux français seront seuls compétents, sous réserve des dispositions impératives applicables dans le pays de résidence de l'utilisateur."]
+        "lines": [
+          "Les présentes conditions sont régies par le droit français. En cas de litige, et à défaut de résolution amiable, les tribunaux français seront seuls compétents, sous réserve des dispositions impératives applicables dans le pays de résidence de l'utilisateur."
+        ]
       },
       {
         "title": "13. Contact",
-        "lines": ["Pour toute question relative aux présentes Conditions d'Utilisation, au service ou à vos données personnelles : privacy@3ds-presence.top"]
+        "lines": [
+          "Pour toute question relative aux présentes Conditions d'Utilisation, au service ou à vos données personnelles : privacy@3ds-presence.top"
+        ]
       }
     ]
   },
@@ -349,6 +371,10 @@
           {
             "question": "Comment fonctionne la sécurité ?",
             "answer": "Le site web et les routes de l'API non destinées à la 3DS sont accessibles uniquement en HTTPS. Pour garder la connexion entre la 3DS et le serveur la plus légère possible, HTTPS n'est pas utilisé car trop complexe. À la place, la sécurité est assurée par le chiffrement AES et par un nonce de session. Ainsi, même si une personne intercepte la connexion entre la 3DS et le serveur, elle ne pourra pas modifier la requête sans que le serveur s'en rende compte. Le nonce est initialisé de manière aléatoire et est incrémenté à chaque échange, ce qui évite les attaques par rejeu."
+          },
+          {
+            "question": "Pourquoi 3DS Presence demande-t-il à accéder à la liste d'amis Discord lors de la connexion ?",
+            "answer": "3DS Presence n'utilise pas la liste d'amis Discord. 3DS Presence utilise uniquement le scope Discord \"sdk.social_layer_presence\", nécessaire pour mettre à jour votre statut Discord. Malheureusement, ce scope donne accès à beaucoup de permissions inutiles, dont la liste d'amis. 3DS Presence n'accède jamais à ces informations."
           }
         ]
       }
