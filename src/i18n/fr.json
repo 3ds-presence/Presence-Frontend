@@ -287,7 +287,7 @@
   },
   "faq": {
     "title": "FAQ",
-    "lastUpdated": "Dernière mise à jour : 21 août 2026",
+    "lastUpdated": "Dernière mise à jour : 27 août 2026",
     "categories": [
       {
         "category": "Général",
@@ -311,6 +311,10 @@
           {
             "question": "Quelles sont les conditions d'utilisation de 3DS Presence ?",
             "answer": "Vous pouvez consulter les conditions d'utilisation sur : https://3ds-presence.top/terms."
+          },
+          {
+            "question": "Quels sont les jeux qui peuvent être affichés sur le profil ?",
+            "answer": "3DS Presence peut afficher tous les jeux et applications présentes sur la 3DS, à l'exception des jeux Nintendo DS (DSiWare, cartouche de jeu DS et Twilight Menu++), ainsi que des jeux GBA (Virtual Console)."
           }
         ]
       },
@@ -354,6 +358,14 @@
           {
             "question": "Le menu Rosalina ne s'ouvre pas. Que faire ?",
             "answer": "Assurez-vous que Presence3DS est correctement installé et à jour. Le menu Rosalina s'ouvre par défaut avec la combinaison L + DPAD-Bas + Select, mais il est possible de changer les touches pour accéder à ce menu. Si vous avez changé les touches pour accéder au menu, vous devez utiliser vos touches personnalisées."
+          },
+          {
+            "question": "Pourquoi CTGP7 ne fonctionne-t-il pas avec 3DS Presence ?",
+            "answer": "CTGP7 utilise un système anti-triche qui empêche le jeu d'être chargé avec un custom firmware autre que le Luma3DS officiel. Par conséquent, Presence3DS ne peut pas être utilisé avec CTGP7. Vous pouvez toujours utiliser 3DS Presence avec d'autres jeux."
+          },
+          {
+            "question": "Je n'arrive pas à jouer en mode téléchargement ou en multijoueur local. Que faire ?",
+            "answer": "Le Multijoueur Local, Internet et StreetPass utilisent tous les trois la carte Wi-Fi, et de manière exclusive. Cela signifie que la 3DS ne peut pas se connecter à Internet tout en jouant en multijoueur local ou en mode téléchargement. Pour jouer en multijoueur local ou en mode téléchargement, vous devez désactiver la RPC Discord dans le menu Rosalina."
           }
         ]
       },
@@ -407,14 +419,15 @@
   "installation": {
     "title": "Installation",
     "prerequisites": "Prérequis",
-    "prerequisitesText": "Pour utiliser 3DS Presence sur votre Nintendo 3DS, vous devez avoir installé un custom firmware (CFW). Suivez un guide comme 3ds.hacks.guide si ce n'est pas encore fait. Vous aurez aussi besoin d'un moyen de transférer des fichiers vers votre carte SD.",
+    "prerequisitesText": "Pour utiliser 3DS Presence sur votre Nintendo 3DS, vous devez avoir installé un custom firmware (CFW). Suivez un guide comme 3ds.hacks.guide si ce n'est pas encore fait. Vous aurez aussi besoin d'un moyen de transférer des fichiers vers votre carte SD. Pour cela, vous pouvez utiliser un lecteur de carte SD/MicroSD ou un homebrew FTP comme FTPD.",
     "procedure": "Procédure d'installation",
     "procedureText": "Préparer la carte SD et configurer Presence3DS",
     "steps": "Étapes",
     "stepsList": [
       "Téléchargez le fichier boot.firm depuis le lien ci-dessous.",
-      "Copiez le fichier boot.firm à la racine de votre carte SD.",
+      "Copiez le fichier boot.firm à la racine de votre carte SD, en remplaçant l'ancien.",
       "Téléchargez le fichier de configuration depuis le lien ci-dessus.",
+      "Créez un dossier nommé presence3ds à la racine de la carte SD.",
       "Copiez le fichier de configuration dans le dossier presence3ds/ de votre carte SD.",
       "Réinsérez la carte SD dans votre 3DS et démarrez-la ou redémarrez-la.",
       "Ouvrez le menu Rosalina (par défaut : L + DPAD-Bas + Select).",
