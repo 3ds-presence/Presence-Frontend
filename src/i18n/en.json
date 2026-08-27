@@ -13,7 +13,8 @@
   "hero": {
     "description": "Display the game you are playing on your Nintendo 3DS directly on your Discord profile.",
     "discordButton": "Discord",
-    "githubButton": "GitHub"
+    "githubButton": "GitHub",
+    "usersConnected": "{count} users connected"
   },
   "features": {
     "title": "Features",

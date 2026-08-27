@@ -39,8 +39,8 @@ export function mockBackend(): Plugin {
       server.middlewares.use(async (req: IncomingMessage, res: ServerResponse, next: Connect.NextFunction) => {
         const url = req.url || ''
 
-        // Only handle POST requests under /api/.
-        if (!url.startsWith('/api/') || req.method !== 'POST') {
+        // Only handle requests under /api/.
+        if (!url.startsWith('/api/')) {
           return next()
         }
 
@@ -48,6 +48,14 @@ export function mockBackend(): Plugin {
         const path = url.split('?')[0]
 
         switch (path) {
+          case '/api/server-info': {
+            const connected = Math.floor(Math.random() * 1001)
+            res.statusCode = 200
+            res.setHeader('Content-Type', 'application/json')
+            res.end(JSON.stringify({ connected_users: connected }))
+            return
+          }
+
           case '/api/oauth/start': {
             // Simulate the Discord authorization URL. Redirect back to the
             // frontend with a fake `code` + `state` so the register flow runs.

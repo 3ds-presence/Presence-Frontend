@@ -21,6 +21,9 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     <div class="card hero-section">
       <img src="/banner.svg" :alt="$t('app.title')" class="hero-banner" />
       <h1 class="hero-title sr-only">{{ $t('app.title') }}</h1>
+      <p v-if="usersConnected !== null" class="users-connected">
+        🟢 {{ $t('hero.usersConnected', { count: usersConnected }) }}
+      </p>
       <p class="hero-description">{{ $t('hero.description') }}</p>
 
       <div class="hero-links">
@@ -71,7 +74,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, ref, onMounted } from 'vue'
 import { useI18n } from 'vue-i18n'
 import DiscordLogin from './DiscordLogin.vue'
 import DownloadButton from './DownloadButton.vue'
@@ -79,6 +82,25 @@ import DownloadButton from './DownloadButton.vue'
 const { tm } = useI18n()
 
 const featureItems = computed(() => (tm('features.items') as unknown as string[]) ?? [])
+
+const usersConnected = ref<number | null>(null)
+
+async function loadConnectedUsers() {
+  try {
+    const response = await fetch('/api/server-info')
+    if (!response.ok) {
+      return
+    }
+    const data = await response.json()
+    if (typeof data.connected_users === 'number') {
+      usersConnected.value = data.connected_users
+    }
+  } catch {
+    // Ignore network errors; the count simply stays hidden.
+  }
+}
+
+onMounted(loadConnectedUsers)
 </script>
 
 <style scoped>
@@ -99,6 +121,13 @@ const featureItems = computed(() => (tm('features.items') as unknown as string[]
   height: auto;
   display: block;
   margin: 0 auto 0 auto;
+}
+
+.users-connected {
+  font-size: 14px;
+  color: #666;
+  text-align: center;
+  margin: 8px 0 0 0;
 }
 
 .download-card {
