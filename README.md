@@ -6,4 +6,4 @@ It connects to the backend API to handle Discord authentication and configuratio
 
 ## Contribution
 You can contribute to this project by adding new 3DS games logos.
-Logos must be in PNG format, and must be in a folder named after the game ID, and the logo file must be named `logo.png`.
+Logos must be in PNG format, and must be in a folder named after the game ID, and the logo file must be named `icon.png`.
