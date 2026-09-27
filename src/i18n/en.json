@@ -288,7 +288,7 @@
   },
   "faq": {
     "title": "FAQ",
-    "lastUpdated": "Last updated: August 27, 2026",
+    "lastUpdated": "Last updated: September 27, 2026",
     "categories": [
       {
         "category": "General",
@@ -328,7 +328,19 @@
           },
           {
             "question": "How do I install 3DS Presence on my 3DS?",
-            "answer": "You will need the latest Presence3DS boot.firm available on the website, as well as an account on 3DS Presence. For more information, follow the guide shown on the page once you are connected."
+            "answer": "There are two methods, shown in the Download section of the website. The recommended method is to use the Presence3DS Helper homebrew app, which downloads and installs boot.firm directly from your 3DS. The manual method is to download boot.firm on a computer and copy it to the root of your SD card."
+          },
+          {
+            "question": "What is Presence3DS Helper?",
+            "answer": "Presence3DS Helper is a homebrew app that downloads and installs boot.firm directly from your 3DS. It is the recommended installation method because you don't need a computer or to remove your SD card. It is available as a .cia (to install with FBI) and as a .3dsx (to launch from the Homebrew Launcher)."
+          },
+          {
+            "question": "Should I download the .cia or the .3dsx version of the Helper?",
+            "answer": "Download the .cia (recommended): install it with FBI and it appears directly on your HOME Menu. Choose the .3dsx only if you prefer the Homebrew Launcher: copy it to your SD card and launch it from there."
+          },
+          {
+            "question": "How do I install the Helper .cia directly with FBI?",
+            "answer": "Connect your 3DS to the Internet, open FBI, go to \"Remote Install\" > \"Scan QR Code\" and scan the QR code shown in the Automatic tab on the website. FBI downloads and installs the .cia without a computer. If scanning fails, download the .cia on a computer, copy it to your SD card and install it from FBI."
           }
         ]
       },
@@ -341,7 +353,11 @@
           },
           {
             "question": "How do I download my configuration file?",
-            "answer": "After connecting with Discord, your UUID and AES key are shown on the page. Click the \"Download configuration\" button to get the configuration file to place in the presence3ds/ folder on your SD card."
+            "answer": "After connecting with Discord, your UUID and AES key are shown on the page. In the Configuration section you have two options: click \"Show QR Code\" and scan it from Presence3DS Helper on your 3DS (\"Import config from QR\"), or click \"Download configuration\" to get the discord_rpc.conf file to place in the presence3ds/ folder on your SD card (manual method). Never share your QR code or your configuration file: they contain your credentials."
+          },
+          {
+            "question": "How do I link Presence3DS to my account with the QR code?",
+            "answer": "Log in with Discord on the website, then in the Configuration section click \"Show QR Code\". In Presence3DS Helper on your 3DS, choose \"Import config from QR\" and scan it. Never share this QR code: it contains your credentials."
           },
           {
             "question": "How do I delete my account?",
@@ -365,8 +381,8 @@
             "answer": "CTGP7 uses an anti-cheat system that prevents the game from being loaded with a custom firmware other than the official Luma3DS. As a result, Presence3DS cannot be used with CTGP7. You can still use 3DS Presence with other games."
           },
           {
-            "question": "I can't play in Download Play or local multiplayer. What should I do?",
-            "answer": "Local Multiplayer, Internet, and StreetPass all use the Wi-Fi card, in a mutually exclusive way. This means the 3DS cannot connect to the Internet while playing local multiplayer or Download Play. To play local multiplayer or Download Play, you must disable the Discord RPC in the Rosalina menu."
+            "question": "The Helper fails to download boot.firm. What should I do?",
+            "answer": "Make sure your 3DS is connected to the Internet (test the connection in System Settings) and retry. If it still fails, note the error shown by the Helper and ask for help on the Discord server. As a fallback, you can always use the Manual installation tab to copy boot.firm to the root of your SD card with a computer."
           }
         ]
       },

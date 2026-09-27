@@ -288,7 +288,7 @@
   },
   "faq": {
     "title": "FAQ",
-    "lastUpdated": "Dernière mise à jour : 27 août 2026",
+    "lastUpdated": "Dernière mise à jour : 27 septembre 2026",
     "categories": [
       {
         "category": "Général",
@@ -328,7 +328,19 @@
           },
           {
             "question": "Comment installer 3DS Presence sur ma 3DS ?",
-            "answer": "Vous aurez besoin du dernier boot.firm de Presence3DS disponible sur le site, ainsi que d'un compte sur 3DS Presence. Pour plus d'informations, suivez le guide présent sur la page une fois connecté."
+            "answer": "Il existe deux méthodes, présentées dans la section Téléchargement du site. La méthode recommandée consiste à utiliser l'application homebrew Presence3DS Helper, qui télécharge et installe boot.firm directement depuis votre 3DS. La méthode manuelle consiste à télécharger boot.firm sur un ordinateur et à le copier à la racine de votre carte SD."
+          },
+          {
+            "question": "Qu'est-ce que Presence3DS Helper ?",
+            "answer": "Presence3DS Helper est une application homebrew qui télécharge et installe boot.firm directement depuis votre 3DS. C'est la méthode d'installation recommandée car vous n'avez besoin ni d'un ordinateur, ni de retirer votre carte SD. Elle est disponible en .cia (à installer avec FBI) et en .3dsx (à lancer depuis le Homebrew Launcher)."
+          },
+          {
+            "question": "Dois-je télécharger la version .cia ou .3dsx du Helper ?",
+            "answer": "Téléchargez le .cia (recommandé) : installez-le avec FBI et il apparaît directement dans votre menu HOME. Choisissez le .3dsx uniquement si vous préférez le Homebrew Launcher : copiez-le sur votre carte SD et lancez-le depuis celui-ci."
+          },
+          {
+            "question": "Comment installer le .cia du Helper directement avec FBI ?",
+            "answer": "Connectez votre 3DS à Internet, ouvrez FBI, allez dans \"Remote Install\" > \"Scan QR Code\" et scannez le QR code affiché dans l'onglet Automatique du site. FBI télécharge et installe le .cia sans ordinateur. Si le scan échoue, téléchargez le .cia sur un ordinateur, copiez-le sur votre carte SD et installez-le depuis FBI."
           }
         ]
       },
@@ -341,7 +353,11 @@
           },
           {
             "question": "Comment télécharger mon fichier de configuration ?",
-            "answer": "Après vous être connecté avec Discord, votre UUID et votre clé AES s'affichent sur la page. Cliquez sur le bouton \"Télécharger la configuration\" pour obtenir le fichier de configuration à placer dans le dossier presence3ds/ de votre carte SD."
+            "answer": "Après vous être connecté avec Discord, votre UUID et votre clé AES s'affichent sur la page. Dans la section Configuration, vous avez deux options : cliquez sur \"Afficher le QR Code\" et scannez-le depuis Presence3DS Helper sur votre 3DS (\"Import config from QR\"), ou cliquez sur \"Télécharger la configuration\" pour obtenir le fichier discord_rpc.conf à placer dans le dossier presence3ds/ de votre carte SD (méthode manuelle). Ne partagez jamais votre QR code ni votre fichier de configuration : ils contiennent vos identifiants."
+          },
+          {
+            "question": "Comment lier Presence3DS à mon compte avec le QR code ?",
+            "answer": "Connectez-vous avec Discord sur le site, puis dans la section Configuration cliquez sur \"Afficher le QR Code\". Dans Presence3DS Helper sur votre 3DS, choisissez \"Import config from QR\" et scannez-le. Ne partagez jamais ce QR code : il contient vos identifiants."
           },
           {
             "question": "Comment supprimer mon compte ?",
@@ -365,8 +381,8 @@
             "answer": "CTGP7 utilise un système anti-triche qui empêche le jeu d'être chargé avec un custom firmware autre que le Luma3DS officiel. Par conséquent, Presence3DS ne peut pas être utilisé avec CTGP7. Vous pouvez toujours utiliser 3DS Presence avec d'autres jeux."
           },
           {
-            "question": "Je n'arrive pas à jouer en mode téléchargement ou en multijoueur local. Que faire ?",
-            "answer": "Le Multijoueur Local, Internet et StreetPass utilisent tous les trois la carte Wi-Fi, et de manière exclusive. Cela signifie que la 3DS ne peut pas se connecter à Internet tout en jouant en multijoueur local ou en mode téléchargement. Pour jouer en multijoueur local ou en mode téléchargement, vous devez désactiver la RPC Discord dans le menu Rosalina."
+            "question": "Le Helper n'arrive pas à télécharger boot.firm. Que faire ?",
+            "answer": "Vérifiez que votre 3DS est connectée à Internet (testez la connexion dans les Paramètres système) et réessayez. Si cela échoue toujours, notez l'erreur affichée par le Helper et demandez de l'aide sur le serveur Discord. En solution de secours, vous pouvez toujours utiliser l'onglet Installation manuelle pour copier boot.firm à la racine de votre carte SD avec un ordinateur."
           }
         ]
       },
