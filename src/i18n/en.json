@@ -409,20 +409,26 @@
   },
   "downloadConfig": {
     "title": "Configuration",
-    "description": "Download a file containing your credentials to configure the 3DS client.",
-    "button": "Download Configuration"
+    "description": "Download a file containing your credentials to configure Presence3DS.",
+    "button": "Download Configuration",
+    "showQr": "Show QR Code",
+    "hideQr": "Hide QR Code",
+    "qrAlt": "Configuration QR code",
+    "qrHelp": "Scan this QR code in Presence3DS Helper (\"Import config from QR\") to link Presence3DS to your account.",
+    "qrWarning": "Never share this QR code: it contains your credentials"
   },
   "downloadButton": {
     "title": "Download",
     "subtitle": "Download the latest version of Presence3DS",
-    "version": "Current version: {version}"
+    "version": "Current version: {version}",
+    "versionUnknown": "unknown"
   },
   "installation": {
     "title": "Installation",
     "prerequisites": "Prerequisites",
-    "prerequisitesText": "To use 3DS Presence on your Nintendo 3DS, you need a custom firmware (CFW) installed. Follow a guide like 3ds.hacks.guide if you haven't done this yet. You will also need a way to transfer files to your SD card. For that, you can use an SD/MicroSD card reader or FTP Homebrew like FTPD.",
-    "procedure": "Installation Procedure",
-    "procedureText": "Prepare the SD card and configure Presence3DS",
+    "prerequisitesText": "To use 3DS Presence on your Nintendo 3DS, you need a custom firmware (CFW) installed. Follow a guide like 3ds.hacks.guide if you haven't done this yet.",
+    "manualTitle": "Install Manually",
+    "manualDescription": "Transfer the boot.firm file to your 3DS SD card manually using a computer.",
     "steps": "Steps",
     "stepsList": [
       "Download the boot.firm file from the link below.",
@@ -437,7 +443,31 @@
       "Start the RPC via \"Start Discord RPC\".",
       "Your Discord status will now update automatically while you play!"
     ],
-    "downloadBinary": "Download Presence3DS"
+    "downloadBinary": "Download Presence3DS",
+    "helperTitle": "Install with Presence3DS Helper",
+    "helperDescription": "Presence3DS Helper is a homebrew app that downloads and installs boot.firm directly from your 3DS.",
+    "helperDownloadCia": "Download the .cia (recommended)",
+    "helperDownload3dsx": "Download the .3dsx",
+    "helperVersion": "Helper version: {version}",
+    "helperQrTitle": "Install directly with FBI",
+    "helperStepsTitle": "Steps",
+    "helperStepsList": [
+      "Download the .cia below and install it with FBI (recommended), or copy the .3dsx to your SD card and launch it from the Homebrew Launcher.",
+      "Launch \"Presence 3DS Helper\" from the HOME menu (or the Homebrew Launcher).",
+      "Choose \"Download Presence 3DS\" to install the latest boot.firm",
+      "Choose \"Import config from QR\" in the helper to scan your configuration QR code, or place the downloaded discord_rpc.conf file in the presence3ds/ folder on your SD card.",
+      "Restart your 3DS.",
+      "Open the Rosalina menu (by default: L + DPAD-Down + Select).",
+      "In the Rosalina menu, select \"Discord RPC...\".",
+      "Configure your preferences (including auto-start) in \"User Preferences\".",
+      "Start the RPC via \"Start Discord RPC\".",
+      "Your Discord status will now update automatically while you play!"
+    ]
+  },
+  "downloadTabs": {
+    "ariaLabel": "Installation method",
+    "helper": "Automatic (Helper)",
+    "manual": "Manual installation"
   },
   "languageSwitcher": {
     "en": "English",

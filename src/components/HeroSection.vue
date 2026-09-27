@@ -60,7 +60,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     <div class="card download-card">
       <h2 class="download-title">{{ $t('downloadButton.title') }}</h2>
       <p class="download-subtitle">{{ $t('downloadButton.subtitle') }}</p>
-      <DownloadButton />
+      <DownloadTabs compact />
     </div>
 
     <div class="card">
@@ -77,7 +77,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 import { computed, ref, onMounted } from 'vue'
 import { useI18n } from 'vue-i18n'
 import DiscordLogin from './DiscordLogin.vue'
-import DownloadButton from './DownloadButton.vue'
+import DownloadTabs from './DownloadTabs.vue'
 
 const { tm } = useI18n()
 
@@ -148,7 +148,7 @@ onMounted(loadConnectedUsers)
 .download-subtitle {
   font-size: 14px;
   color: #666;
-  margin: 0 0 12px 0;
+  margin: 0;
 }
 
 .features-faq-link {

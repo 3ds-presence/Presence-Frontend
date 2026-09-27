@@ -21,34 +21,8 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     <a href="/dyn/boot.firm" class="btn btn-download" download>
       {{ $t('installation.downloadBinary') }}
     </a>
-    <p class="version-text">
-      {{ $t('downloadButton.version', { version: version }) }}
-    </p>
   </div>
 </template>
-
-<script setup lang="ts">
-import { ref, onMounted } from 'vue'
-
-const version = ref('unknown')
-
-const VERSION_PATTERN = /^v?\d+(\.\d+){0,3}([-+][0-9A-Za-z.-]+)?$/
-
-onMounted(async () => {
-  try {
-    const response = await fetch('/dyn/version')
-    if (!response.ok) {
-      throw new Error(`HTTP ${response.status}`)
-    }
-    const text = (await response.text()).trim()
-    if (VERSION_PATTERN.test(text)) {
-      version.value = text
-    }
-  } catch (e) {
-    // Keep "unknown"
-  }
-})
-</script>
 
 <style scoped>
 .download-button {
@@ -56,11 +30,5 @@ onMounted(async () => {
   flex-direction: column;
   align-items: center;
   gap: 6px;
-}
-
-.version-text {
-  font-size: 12px;
-  color: #888;
-  margin: 0;
 }
 </style>

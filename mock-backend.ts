@@ -20,9 +20,10 @@ import type { IncomingMessage, ServerResponse } from 'node:http'
 /**
  * Fake backend for local development.
  *
- * Intercepts every `/api/*` request and returns simulated responses without
- * any real verification (no Turnstile, no Discord OAuth). This lets the
- * frontend run standalone via `npm run dev` without the Rust backend.
+ * Intercepts every `/api/*` request (and the `/dyn/*` version files used by
+ * the download section) and returns simulated responses without any real
+ * verification (no Turnstile, no Discord OAuth). This lets the frontend run
+ * standalone via `npm run dev` without the Rust backend or nginx.
  */
 
 // Send an `application/x-www-form-urlencoded` response.
@@ -32,6 +33,13 @@ function sendForm(res: ServerResponse, status: number, params: Record<string, st
   res.end(new URLSearchParams(params).toString())
 }
 
+// Send a `text/plain` response.
+function sendText(res: ServerResponse, body: string): void {
+  res.statusCode = 200
+  res.setHeader('Content-Type', 'text/plain')
+  res.end(body)
+}
+
 export function mockBackend(): Plugin {
   return {
     name: 'mock-backend',
@@ -39,8 +47,9 @@ export function mockBackend(): Plugin {
       server.middlewares.use(async (req: IncomingMessage, res: ServerResponse, next: Connect.NextFunction) => {
         const url = req.url || ''
 
-        // Only handle requests under /api/.
-        if (!url.startsWith('/api/')) {
+        // Only handle requests under /api/ and the self-hosted /dyn/ assets
+        // (nginx serves them in production).
+        if (!url.startsWith('/api/') && !url.startsWith('/dyn/')) {
           return next()
         }
 
@@ -48,6 +57,18 @@ export function mockBackend(): Plugin {
         const path = url.split('?')[0]
 
         switch (path) {
+          case '/dyn/version': {
+            // Simulate the Presence3DS boot.firm version file.
+            sendText(res, 'v1.2.1')
+            return
+          }
+
+          case '/dyn/helper.version': {
+            // Simulate the Presence3DS Helper version file.
+            sendText(res, 'v0.1.0')
+            return
+          }
+
           case '/api/server-info': {
             const connected = Math.floor(Math.random() * 1001)
             res.statusCode = 200

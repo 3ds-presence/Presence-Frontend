@@ -22,19 +22,25 @@
 
 ## Installation
 
+### Manually
 1. Download the latest `boot.firm` from the GitHub releases
 2. Replace the existing `boot.firm` on your SD card root
 3. Configure via the web interface at [3DS Presence Dashboard](https://3ds-presence.top/)
 4. Link your Discord account and start playing
 
+### Using 3ds app
+1. Download Presence3DS Helper from [GitHub](https://github.com/3ds-presence/Presence3DS-Helper)
+2. Install the app on your 3DS using FBI and run it
+3. Follow the on-screen instructions to download and install 3DS Presence automatically
+4. Create an account and link your 3ds to your Discord account using Presence3DS Helper to start playing
+
 ## Links
 
 - [3DS Presence on GitHub](https://github.com/3ds-presence)
-- [Installation guide](https://github.com/3ds-presence/3ds-presence.github.io)
-- [Discord server](https://discord.gg/3ds-presence)
+- [Installation guide](https://3ds-presence.top/)
+- [Discord server](https://discord.gg/npkgkVgzWF)
 
 ## Optional
 
 - [Backend API documentation](https://github.com/3ds-presence/Presence-Backend)
-- [Activity Generator (Lua scripts)](https://github.com/3ds-presence/Activity-Generator)
-- [RPC AddOn for 3DS](https://github.com/3ds-presence/RPC-AddOn)
+- [Activity Generator and scripts](https://github.com/3ds-presence/Activity-Generator)

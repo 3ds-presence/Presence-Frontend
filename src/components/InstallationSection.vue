@@ -25,22 +25,10 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
       {{ $t('installation.prerequisitesText') }}
     </p>
 
-    <h3>{{ $t('installation.procedure') }}</h3>
-    <p>
-      {{ $t('installation.procedureText') }}
-    </p>
-
-    <h4>{{ $t('installation.steps') }}</h4>
-    <ul>
-      <li v-for="(step, i) in $tm('installation.stepsList')" :key="i">{{ step }}</li>
-    </ul>
-
-    <div style="margin-top: 20px;">
-      <DownloadButton />
-    </div>
+    <DownloadTabs />
   </div>
 </template>
 
 <script setup lang="ts">
-import DownloadButton from './DownloadButton.vue'
+import DownloadTabs from './DownloadTabs.vue'
 </script>
