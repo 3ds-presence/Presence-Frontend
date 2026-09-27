@@ -19,10 +19,24 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 <template>
   <div class="helper-download">
     <div class="helper-buttons">
-      <a :href="CIA_PATH" class="btn btn-download" download="presence3ds-helper.cia">
+      <a
+        :href="ciaUrl ?? undefined"
+        :aria-disabled="ciaUrl === null"
+        :class="{ 'is-disabled': ciaUrl === null }"
+        class="btn btn-download"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
         {{ $t('installation.helperDownloadCia') }}
       </a>
-      <a :href="DSX_PATH" class="btn btn-secondary" download="presence3ds-helper.3dsx">
+      <a
+        :href="dsxUrl ?? undefined"
+        :aria-disabled="dsxUrl === null"
+        :class="{ 'is-disabled': dsxUrl === null }"
+        class="btn btn-secondary"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
         {{ $t('installation.helperDownload3dsx') }}
       </a>
     </div>
@@ -31,7 +45,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
       {{ $t('installation.helperVersion', { version }) }}
     </p>
 
-    <div class="helper-qr">
+    <div v-if="ciaUrl" class="helper-qr">
       <h4>{{ $t('installation.helperQrTitle') }}</h4>
       <QrCode :value="ciaUrl" :alt="$t('installation.helperQrTitle')" />
     </div>
@@ -42,17 +56,28 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 import { computed, onMounted, ref } from 'vue'
 import QrCode from './QrCode.vue'
 
-// The helper is self-hosted next to boot.firm in the /dyn/ folder.
-const CIA_PATH = '/dyn/presence3ds-helper.cia'
-const DSX_PATH = '/dyn/presence3ds-helper.3dsx'
+// The Helper binaries are hosted on GitHub Releases, next to boot.firm.
+// The version string is self-hosted in the /dyn/ folder (e.g. "v0.1.0").
 const VERSION_PATH = '/dyn/helper.version'
+const HELPER_RELEASE_BASE_URL =
+  'https://github.com/3ds-presence/Presence3DS-Helper/releases/download'
 
 const VERSION_PATTERN = /^v?\d+(\.\d+){0,3}([-+][0-9A-Za-z.-]+)?$/
 
-// Absolute URL encoded in the QR code so FBI can download the .cia directly.
-const ciaUrl = computed(() => new URL(CIA_PATH, window.location.origin).href)
-
 const version = ref<string | null>(null)
+
+// Absolute GitHub Release URLs derived from the detected version, so FBI
+// downloads the .cia directly and the QR code points to the same file.
+const ciaUrl = computed<string | null>(() =>
+  version.value
+    ? `${HELPER_RELEASE_BASE_URL}/${version.value}/presence3ds-helper.cia`
+    : null,
+)
+const dsxUrl = computed<string | null>(() =>
+  version.value
+    ? `${HELPER_RELEASE_BASE_URL}/${version.value}/presence3ds-helper.3dsx`
+    : null,
+)
 
 onMounted(async () => {
   try {
@@ -62,10 +87,11 @@ onMounted(async () => {
     }
     const text = (await response.text()).trim()
     if (VERSION_PATTERN.test(text)) {
-      version.value = text
+      version.value = text.startsWith('v') ? text : `v${text}`
     }
   } catch {
-    // Keep the version hidden if the file is missing or unreachable.
+    // Keep the download buttons disabled and the QR code hidden when the
+    // version file is missing or unreachable.
   }
 })
 </script>
@@ -83,6 +109,11 @@ onMounted(async () => {
   flex-wrap: wrap;
   justify-content: center;
   gap: 12px;
+}
+
+.helper-buttons .is-disabled {
+  opacity: 0.5;
+  pointer-events: none;
 }
 
 .version-text {
