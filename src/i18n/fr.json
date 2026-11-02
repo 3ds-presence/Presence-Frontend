@@ -288,7 +288,7 @@
   },
   "faq": {
     "title": "FAQ",
-    "lastUpdated": "Dernière mise à jour : 27 septembre 2026",
+    "lastUpdated": "Dernière mise à jour : 02 novembre 2026",
     "categories": [
       {
         "category": "Général",
@@ -377,8 +377,8 @@
             "answer": "Assurez-vous que Presence3DS est correctement installé et à jour. Le menu Rosalina s'ouvre par défaut avec la combinaison L + DPAD-Bas + Select, mais il est possible de changer les touches pour accéder à ce menu. Si vous avez changé les touches pour accéder au menu, vous devez utiliser vos touches personnalisées."
           },
           {
-            "question": "Pourquoi CTGP7 ne fonctionne-t-il pas avec 3DS Presence ?",
-            "answer": "CTGP7 utilise un système anti-triche qui empêche le jeu d'être chargé avec un custom firmware autre que le Luma3DS officiel. Par conséquent, Presence3DS ne peut pas être utilisé avec CTGP7. Vous pouvez toujours utiliser 3DS Presence avec d'autres jeux."
+            "question": "Comment utiliser CTGP7 avec Presence3DS ?",
+            "answer": "CTGP7 est compatible avec Presence3DS uniquement dans sa version \"Emulator\", et non dans sa version \"Console\". Vous pouvez vérifier quelle version vous utilisez dans le launcher de CTGP7. Si vous avez la version \"Console\", vous pouvez passer à la version \"Emulator\" en réinstallant CTGP7 Downloader, puis en sélectionnant la version \"Emulator\" dans le menu."
           },
           {
             "question": "Le Helper n'arrive pas à télécharger boot.firm. Que faire ?",
